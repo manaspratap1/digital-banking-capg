@@ -3,4 +3,5 @@ export interface Notification {
   userId: number;
   message: string;
   isRead: boolean;
+  date: string;
 }
