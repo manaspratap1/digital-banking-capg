@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Manas",
+      "email": "user@gmail.com",
+      "password": "user123",
+      "role": "customer"
+    }
+  ],
+
+  "accounts": [
+    {
+      "id": 1,
+      "userId": 2,
+      "accountNumber": "1234567890",
+      "balance": 50000,
+      "accountType": "Savings"
+    }
+  ],
+
+  "transactions": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "amount": 5000,
+      "type": "debit",
+      "category": "Shopping",
+      "date": "2026-06-10",
+      "description": "Amazon Purchase"
+    }
+  ],
+
+  "beneficiaries": [],
+  "bills": [],
+  "notifications": [],
+  "savingsGoals": []
+}
