@@ -1,5 +1,7 @@
+import { Role } from "../enums/role.enum";
+
 export interface AuthState {
   isLoggedIn: boolean;
   userId: number | null;
-  role: 'admin' | 'customer' | null;
+  role: Role;
 }
