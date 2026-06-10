@@ -20,7 +20,7 @@
       "id": "1",
       "userId": 2,
       "accountNumber": "1234567890",
-      "balance": 50000,
+      "balance": 30000,
       "accountType": "Savings"
     }
   ],
@@ -144,9 +144,60 @@
       "date": "2026-06-22",
       "description": "Online course subscription",
       "referenceNumber": "TXN012"
+    },
+    {
+      "id": "308KS7uQHGE",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 10000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "testing",
+      "referenceNumber": "TRF1781074772871"
+    },
+    {
+      "id": "YCWzO7O7k70",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 5000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "providing service",
+      "referenceNumber": "TRF1781075043831"
+    },
+    {
+      "id": "6XG4QEe8zR8",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 2000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-11",
+      "description": "dalali",
+      "referenceNumber": "TRF1781075090812"
+    },
+    {
+      "id": "ztfbW47TXsQ",
+      "accountId": 1,
+      "amount": 3000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "bakchodi",
+      "referenceNumber": "TRF1781075247913"
     }
   ],
-  "beneficiaries": [],
+  "beneficiaries": [
+    {
+      "id": "KCmCuI-Tq2g",
+      "userId": 2,
+      "name": "Saurabh Gupta",
+      "bankName": "Bank Of Baroda",
+      "accountNumber": "11223344556677"
+    }
+  ],
   "bills": [
     {
       "id": "1",
