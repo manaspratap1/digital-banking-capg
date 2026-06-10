@@ -1,34 +1,32 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Admin",
       "email": "admin@gmail.com",
       "password": "admin123",
       "role": "admin"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Manas",
       "email": "user@gmail.com",
       "password": "user123",
       "role": "customer"
     }
   ],
-
   "accounts": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 2,
       "accountNumber": "1234567890",
       "balance": 50000,
       "accountType": "Savings"
     }
   ],
-
   "transactions": [
     {
-      "id": 1,
+      "id": "1",
       "accountId": 1,
       "amount": 50000,
       "type": "credit",
@@ -38,7 +36,7 @@
       "referenceNumber": "TXN001"
     },
     {
-      "id": 2,
+      "id": "2",
       "accountId": 1,
       "amount": 5000,
       "type": "debit",
@@ -48,7 +46,7 @@
       "referenceNumber": "TXN002"
     },
     {
-      "id": 3,
+      "id": "3",
       "accountId": 1,
       "amount": 2500,
       "type": "debit",
@@ -58,7 +56,7 @@
       "referenceNumber": "TXN003"
     },
     {
-      "id": 4,
+      "id": "4",
       "accountId": 1,
       "amount": 1200,
       "type": "debit",
@@ -68,7 +66,7 @@
       "referenceNumber": "TXN004"
     },
     {
-      "id": 5,
+      "id": "5",
       "accountId": 1,
       "amount": 8000,
       "type": "debit",
@@ -78,7 +76,7 @@
       "referenceNumber": "TXN005"
     },
     {
-      "id": 6,
+      "id": "6",
       "accountId": 1,
       "amount": 15000,
       "type": "credit",
@@ -88,7 +86,7 @@
       "referenceNumber": "TXN006"
     },
     {
-      "id": 7,
+      "id": "7",
       "accountId": 1,
       "amount": 3500,
       "type": "debit",
@@ -98,7 +96,7 @@
       "referenceNumber": "TXN007"
     },
     {
-      "id": 8,
+      "id": "8",
       "accountId": 1,
       "amount": 20000,
       "type": "credit",
@@ -108,7 +106,7 @@
       "referenceNumber": "TXN008"
     },
     {
-      "id": 9,
+      "id": "9",
       "accountId": 1,
       "amount": 4500,
       "type": "debit",
@@ -118,7 +116,7 @@
       "referenceNumber": "TXN009"
     },
     {
-      "id": 10,
+      "id": "10",
       "accountId": 1,
       "amount": 10000,
       "type": "debit",
@@ -128,7 +126,7 @@
       "referenceNumber": "TXN010"
     },
     {
-      "id": 11,
+      "id": "11",
       "accountId": 1,
       "amount": 5000,
       "type": "credit",
@@ -138,7 +136,7 @@
       "referenceNumber": "TXN011"
     },
     {
-      "id": 12,
+      "id": "12",
       "accountId": 1,
       "amount": 6000,
       "type": "debit",
@@ -148,59 +146,96 @@
       "referenceNumber": "TXN012"
     }
   ],
-
   "beneficiaries": [],
-  "bills": [],
+  "bills": [
+    {
+      "id": "1",
+      "userId": 2,
+      "category": "Utility",
+      "billerName": "Electricity Board",
+      "amount": 2500,
+      "dueDate": "2026-06-15",
+      "status": "pending"
+    },
+    {
+      "id": "2",
+      "userId": 2,
+      "category": "Internet",
+      "billerName": "Airtel",
+      "amount": 1200,
+      "dueDate": "2026-06-18",
+      "status": "paid"
+    },
+    {
+      "id": "4",
+      "userId": 2,
+      "category": "Gas",
+      "billerName": "Indane Gas",
+      "amount": 950,
+      "dueDate": "2026-06-22",
+      "status": "paid"
+    },
+    {
+      "billerName": "Municipal Water Supply",
+      "category": "Water Bill",
+      "amount": 1200,
+      "dueDate": "2026-06-18",
+      "id": "kSYvFmwDkls",
+      "userId": 2,
+      "status": "paid"
+    }
+  ],
   "notifications": [],
   "savingsGoals": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 2,
       "title": "Laptop",
       "targetAmount": 80000,
       "currentAmount": 40000
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 2,
       "title": "Emergency Fund",
       "targetAmount": 200000,
       "currentAmount": 75000
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 2,
       "title": "Europe Trip",
       "targetAmount": 300000,
       "currentAmount": 50000
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": 2,
       "title": "New Smartphone",
       "targetAmount": 70000,
       "currentAmount": 25000
     },
     {
-      "id": 5,
+      "id": "5",
       "userId": 2,
       "title": "Bike Down Payment",
       "targetAmount": 150000,
       "currentAmount": 60000
     },
     {
-      "id": 6,
+      "id": "6",
       "userId": 2,
       "title": "Home Renovation",
       "targetAmount": 500000,
       "currentAmount": 120000
     },
     {
-      "id": 7,
+      "id": "7",
       "userId": 2,
       "title": "Investment Corpus",
       "targetAmount": 1000000,
       "currentAmount": 180000
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -25,12 +25,6 @@ export const routes: Routes = [
     component: LoginPage,
     canActivate: [guestGuard]
   },
-
-  {
-    path: 'admin',
-    component: AdminPage,
-    canActivate: [adminGuard]
-  },
   
   {
   path: '',
@@ -61,7 +55,13 @@ export const routes: Routes = [
     {
       path: 'finance',
       component: FinancePage
-    }
+    },
+
+    {
+      path: 'admin',
+      component: AdminPage,
+      canActivate: [adminGuard]
+    },
 
   ]
 }

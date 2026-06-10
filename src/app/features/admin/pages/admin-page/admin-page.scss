@@ -1,0 +1,52 @@
+.admin-page {
+  max-width: 1400px;
+  padding-bottom: 3rem;
+}
+
+h2 {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.analytics-card {
+  border: none;
+  border-radius: 18px;
+
+  box-shadow:
+    0 4px 20px rgba(15, 23, 42, 0.05);
+
+  transition: all 0.25s ease;
+}
+
+.analytics-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.analytics-card .card-body {
+  padding: 1.6rem;
+}
+
+.analytics-card h6 {
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+
+  color: #64748b;
+}
+
+.analytics-card h3 {
+  margin-top: 0.75rem;
+
+  font-size: 2rem;
+
+  font-weight: 700;
+
+  color: #0f172a;
+}

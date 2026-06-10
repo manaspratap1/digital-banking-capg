@@ -1,1 +1,79 @@
-<h1>bill-page works!</h1>
+<div class="container">
+
+  <h2 class="mb-4">
+    Bills Management
+  </h2>
+
+  <div class="row mb-4">
+
+    <div class="col-md-4">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <h6>
+            Pending Bills
+          </h6>
+
+          <h3>
+            {{ billService.pendingBillsCount() }}
+          </h3>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <h6>
+            Paid Bills
+          </h6>
+
+          <h3>
+            {{ billService.paidBillsCount() }}
+          </h3>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <h6>
+            Pending Amount
+          </h6>
+
+          <h3>
+            ₹{{ billService.totalPendingAmount() }}
+          </h3>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <app-bill-form />
+
+  <div class="mt-4">
+
+    <app-bill-list />
+
+  </div>
+
+</div>

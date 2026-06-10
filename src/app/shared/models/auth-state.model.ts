@@ -2,6 +2,6 @@ import { Role } from "../enums/role.enum";
 
 export interface AuthState {
   isLoggedIn: boolean;
-  userId: number | null;
+  userId: string | number | null;
   role: Role | null;
 }

@@ -1,0 +1,128 @@
+<div class="card">
+
+  <div class="card-body">
+
+    <h5 class="mb-3">
+      Bills
+    </h5>
+    
+    <div class="table-responsive">
+        <table class="table table-hover">
+
+        <thead>
+
+            <tr>
+
+            <th>Biller</th>
+
+            <th>Category</th>
+
+            <th>Amount</th>
+
+            <th>Due Date</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @if(billService.bills().length === 0){
+
+            <tr>
+
+            <td colspan="6">
+
+            No Bills Found
+
+            </td>
+
+            </tr>
+
+            }
+
+            @for( bill of billService.bills(); track bill.id ){
+
+            <tr>
+
+                <td>
+                {{ bill.billerName }}
+                </td>
+
+                <td>
+                {{ bill.category }}
+                </td>
+
+                <td>
+                ₹{{ bill.amount }}
+                </td>
+
+                <td>
+                {{ bill.dueDate }}
+                </td>
+
+                <td>
+
+                @if(bill.status === 'paid'){
+
+                    <span
+                    class="badge bg-success">
+
+                    Paid
+
+                    </span>
+
+                } @else {
+
+                    <span
+                    class="badge bg-warning">
+
+                    Pending
+
+                    </span>
+
+                }
+
+                </td>
+
+                <td>
+
+                @if(bill.status !== 'paid'){
+
+                    <button
+                    class="btn btn-success btn-sm me-2"
+                    (click)="markAsPaid(bill)">
+
+                    Mark Paid
+
+                    </button>
+
+                }
+
+                <button
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteBill(bill.id)">
+
+                    Delete
+
+                </button>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+        </table>
+    </div>
+    
+
+  </div>
+
+</div>

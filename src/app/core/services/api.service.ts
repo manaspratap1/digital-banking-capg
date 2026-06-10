@@ -40,7 +40,7 @@ export class ApiService {
 
   update<T>(
     endpoint: string,
-    id: number,
+    id: string| number,
     payload: T
   ) {
     return this.http.put(
@@ -51,7 +51,7 @@ export class ApiService {
 
   delete(
     endpoint: string,
-    id: number
+    id: string| number
   ) {
     return this.http.delete(
       `${this.baseUrl}/${endpoint}/${id}`
