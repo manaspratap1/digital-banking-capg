@@ -1,9 +1,58 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
-  imports: [],
+  standalone: true,
+  imports: [ReactiveFormsModule],
   templateUrl: './login-page.html',
-  styleUrl: './login-page.scss',
+  styleUrl: './login-page.scss'
 })
-export class LoginPage {}
+export class LoginPage {
+
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  loginError = false;
+
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
+
+  onSubmit(): void {
+
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
+    const email =
+      this.loginForm.value.email ?? '';
+
+    const password =
+      this.loginForm.value.password ?? '';
+
+    this.authService
+      .login(email, password)
+      .subscribe(success => {
+
+        if (!success) {
+          this.loginError = true;
+          return;
+        }
+
+        const role =
+          this.authService.getRole();
+
+        if (role === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
+      });
+  }
+}

@@ -1,0 +1,85 @@
+.card {
+  border-radius: 18px;
+
+  height: 540px;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+h5 {
+  font-weight: 700;
+
+  color: #1e293b;
+
+  margin-bottom: 1.5rem;
+}
+
+.goals-container {
+  max-height: 430px;
+
+  overflow-y: auto;
+
+  padding-right: 8px;
+}
+
+.goals-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.goals-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 20px;
+}
+
+.goals-container > div {
+  padding: 1rem;
+
+  border-radius: 14px;
+
+  background: #f8fafc;
+
+  margin-bottom: 1rem;
+
+  transition: all 0.2s ease;
+}
+
+.goals-container > div:hover {
+  background: #f1f5f9;
+
+  transform: translateY(-2px);
+}
+
+span:first-child {
+  font-weight: 600;
+
+  color: #1e293b;
+}
+
+span:last-child {
+  color: #475569;
+
+  font-weight: 500;
+}
+
+.progress {
+  height: 10px;
+
+  border-radius: 999px;
+
+  background: #e2e8f0;
+
+  overflow: hidden;
+}
+
+.progress-bar {
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #3b82f6
+  );
+}

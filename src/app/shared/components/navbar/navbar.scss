@@ -1,0 +1,163 @@
+.banking-navbar {
+  background: linear-gradient(
+    90deg,
+    #0f172a,
+    #1e293b
+  );
+
+  box-shadow:
+    0 4px 20px rgba(15, 23, 42, 0.15);
+
+  padding: 0.8rem 0;
+}
+
+.navbar-brand {
+  text-decoration: none;
+
+  color: white !important;
+}
+
+.brand-icon {
+  width: 48px;
+
+  height: 48px;
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 1.3rem;
+}
+
+.brand-title {
+  font-size: 1.3rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+}
+
+.brand-role {
+  margin-top: 2px;
+}
+
+.role-badge {
+  font-size: 0.7rem;
+
+  padding: 0.25rem 0.55rem;
+
+  border-radius: 999px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.3px;
+}
+
+.admin-role {
+  background: rgba(239, 68, 68, 0.18);
+
+  color: #fecaca;
+}
+
+.customer-role {
+  background: rgba(34, 197, 94, 0.18);
+
+  color: #bbf7d0;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.75) !important;
+
+  font-weight: 500;
+
+  margin: 0 0.3rem;
+
+  border-radius: 10px;
+
+  padding: 0.7rem 1rem !important;
+
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: white !important;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  transform: translateY(-1px);
+}
+
+.active-link {
+  color: white !important;
+
+  background:
+    rgba(59, 130, 246, 0.18);
+
+  border: 1px solid
+    rgba(59, 130, 246, 0.35);
+}
+
+.logout-btn {
+  border: 1px solid
+    rgba(255, 255, 255, 0.18);
+
+  color: white;
+
+  padding: 0.65rem 1.2rem;
+
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: white;
+
+  color: #0f172a;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+@media (max-width: 991px) {
+
+  .navbar-collapse {
+    margin-top: 1rem;
+
+    padding-top: 1rem;
+
+    border-top:
+      1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .navbar-nav {
+    gap: 0.5rem;
+  }
+
+  .logout-btn {
+    margin-top: 1rem;
+
+    width: 100%;
+  }
+
+}

@@ -1,5 +1,5 @@
 export interface SavingsGoal {
-  id: number;
+  id: string | number;
   userId: number;
   title: string;
   targetAmount: number;

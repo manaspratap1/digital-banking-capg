@@ -1,0 +1,104 @@
+.modal-content {
+  border: none;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.2);
+}
+
+.modal-header {
+  background: #f8fafc;
+
+  padding: 1.5rem 2rem;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1;
+}
+
+.modal-header h5 {
+  margin: 0;
+
+  font-weight: 700;
+
+  color: #1e293b;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-body h6 {
+  font-weight: 700;
+
+  color: #334155;
+
+  margin-bottom: 1rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.modal-body p {
+  color: #475569;
+
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  margin: 2rem 0;
+
+  border-color: #e2e8f0;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+thead th {
+  border: none;
+
+  color: #64748b;
+
+  font-size: 0.85rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+
+  padding: 1rem;
+}
+
+tbody td {
+  padding: 1rem;
+
+  border-color: #f1f5f9;
+
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.btn-close:focus {
+  box-shadow: none;
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+}

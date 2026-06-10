@@ -1,8 +1,16 @@
+import { BillStatus } from '../enums/bill-status.enum';
+
 export interface Bill {
-  id: number;
+  id: string | number;
   userId: number;
+
+  billerName: string;
+
   category: string;
+
   amount: number;
+
   dueDate: string;
-  status: 'paid' | 'pending';
+
+  status: BillStatus;
 }

@@ -1,0 +1,57 @@
+.card {
+  border: none;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+h5 {
+  font-weight: 700;
+
+  color: #1e293b;
+
+  margin-bottom: 1.5rem;
+}
+
+.row {
+  row-gap: 1rem;
+}
+
+.form-control {
+  border-radius: 12px;
+
+  border: 1px solid #dbe2ea;
+
+  padding: 0.75rem 1rem;
+
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #3b82f6;
+
+  box-shadow:
+    0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+.btn-primary {
+  height: 100%;
+
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  background: #2563eb;
+
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}

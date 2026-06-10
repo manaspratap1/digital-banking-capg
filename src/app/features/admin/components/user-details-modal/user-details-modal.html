@@ -1,0 +1,204 @@
+@if(admin.isModalOpen()){
+
+<div
+  class="modal fade show d-block"
+  tabindex="-1">
+
+  <div
+    class="modal-dialog modal-xl">
+
+    <div
+      class="modal-content">
+
+      <div
+        class="modal-header">
+
+        <h5>
+          {{ admin.selectedUser()?.name}}
+        </h5>
+
+        <button
+          class="btn-close"
+          (click)="admin.closeModal()">
+        </button>
+
+      </div>
+
+      <div
+        class="modal-body">
+
+        <h6>
+          User Information
+        </h6>
+
+        <p>
+
+          Name:
+          {{
+            admin
+            .selectedUser()
+            ?.name
+          }}
+
+        </p>
+
+        <p>
+
+          Email:
+          {{
+            admin
+            .selectedUser()
+            ?.email
+          }}
+
+        </p>
+
+        <hr>
+
+        <h6>
+          Accounts
+        </h6>
+
+        <table
+          class="table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Account Number
+              </th>
+
+              <th>
+                Type
+              </th>
+
+              <th>
+                Balance
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            @for(
+              account of
+              admin.selectedAccounts();
+              track account.id
+            ){
+
+              <tr>
+
+                <td>
+                  {{
+                    account.accountNumber
+                  }}
+                </td>
+
+                <td>
+                  {{
+                    account.accountType
+                  }}
+                </td>
+
+                <td>
+                  ₹{{ account.balance }}
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+        <hr>
+
+        <h6>
+          Transactions
+        </h6>
+
+        <table
+          class="table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Category
+              </th>
+
+              <th>
+                Amount
+              </th>
+
+              <th>
+                Type
+              </th>
+
+              <th>
+                Date
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            @for(
+              transaction of
+              admin.selectedTransactions();
+              track transaction.id
+            ){
+
+              <tr>
+
+                <td>
+                  {{
+                    transaction.category
+                  }}
+                </td>
+
+                <td>
+                  ₹{{ transaction.amount }}
+                </td>
+
+                <td>
+                  {{
+                    transaction.type
+                  }}
+                </td>
+
+                <td>
+                  {{
+                    transaction.date
+                  }}
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div
+  class="modal-backdrop fade show">
+</div>
+
+}

@@ -1,0 +1,76 @@
+<div class="container admin-page">
+
+  <h2 class="mb-4">
+    Admin Dashboard
+  </h2>
+
+  <div class="row mb-4">
+
+    <div class="col-md-4">
+
+      <div class="card analytics-card">
+
+        <div class="card-body">
+
+          <h6>
+            Total Users
+          </h6>
+
+          <h3>
+            {{ admin.usersCount() }}
+          </h3>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card analytics-card">
+
+        <div class="card-body">
+
+          <h6>
+            Total Accounts
+          </h6>
+
+          <h3>
+            {{ admin.accountsCount() }}
+          </h3>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="card analytics-card">
+
+        <div class="card-body">
+
+          <h6>
+            Total Transactions
+          </h6>
+
+          <h3>
+            {{ admin.transactionsCount() }}
+          </h3>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <app-users-table />
+
+
+</div>
+
+<app-user-details-modal />
