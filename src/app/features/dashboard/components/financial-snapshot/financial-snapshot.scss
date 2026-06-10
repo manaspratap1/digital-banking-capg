@@ -1,0 +1,137 @@
+.snapshot-card {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 1.75rem;
+
+  box-shadow:
+    0 10px 25px rgba(
+      0,
+      0,
+      0,
+      0.06
+    );
+}
+
+.section-header {
+  margin-bottom: 1.75rem;
+}
+
+.section-header h5 {
+  margin: 0;
+
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.section-header p {
+  margin: 0.4rem 0 0;
+
+  color: #6b7280;
+
+  font-size: 0.95rem;
+}
+
+.snapshot-item {
+  background: #f9fafb;
+
+  border-radius: 20px;
+
+  padding: 1.5rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  height: 100%;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.snapshot-item:hover {
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 12px 24px rgba(
+      0,
+      0,
+      0,
+      0.06
+    );
+}
+
+.snapshot-icon {
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 1.5rem;
+
+  flex-shrink: 0;
+}
+
+.spending {
+  background:
+    rgba(220, 38, 38, 0.12);
+
+  color: #dc2626;
+}
+
+.savings {
+  background:
+    rgba(22, 163, 74, 0.12);
+
+  color: #16a34a;
+}
+
+.goals {
+  background:
+    rgba(37, 99, 235, 0.12);
+
+  color: #2563eb;
+}
+
+.snapshot-label {
+  display: block;
+
+  color: #6b7280;
+
+  font-size: 0.9rem;
+
+  margin-bottom: 0.35rem;
+}
+
+.snapshot-item h4 {
+  margin: 0;
+
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.snapshot-item small {
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+
+  .snapshot-item {
+    padding: 1.25rem;
+  }
+
+}

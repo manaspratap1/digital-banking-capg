@@ -1,30 +1,52 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { DashboardService } from '../../services/dashboard.service';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { Dashboard } from '../../services/dashboard';
+import { QuickActions } from '../../components/quick-actions/quick-actions';
+import { RecentTransactions } from '../../components/recent-transactions/recent-transactions';
+import { UpcomingBills } from '../../components/upcoming-bills/upcoming-bills';
+import { FinancialSnapshot } from '../../components/financial-snapshot/financial-snapshot';
+import { AuthService } from '../../../../core/services/auth.service';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-page',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [QuickActions, RecentTransactions, UpcomingBills, FinancialSnapshot, UpperCasePipe],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.scss',
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage
+  implements OnInit {
 
-  private dashboardService = inject(DashboardService);
+  dashboard = inject(Dashboard);
+  private authService = inject(AuthService);
 
-  accounts = this.dashboardService.accounts;
-  transactions = this.dashboardService.recentTransactions;
-  notifications = this.dashboardService.notifications;
-  savingsGoals = this.dashboardService.savingsGoals;
-
-  totalBalance = this.dashboardService.totalBalance;
-  unreadNotifications = this.dashboardService.unreadNotifications;
+  showBalance = signal(false);
 
   ngOnInit(): void {
-
-    this.dashboardService.loadDashboardData(2).subscribe();
-
+    this.dashboard.loadDashboard();
   }
+
+  userName() {
+    return this.authService
+      .currentUser()
+      .name;
+  }
+
+  greeting() {
+    const hour = new Date().getHours();
+
+    if (hour < 12) {
+      return 'Good Morning';
+    }
+
+    if (hour < 17) {
+      return 'Good Afternoon';
+    }
+
+    return 'Good Evening';
+  }
+
+  toggleBalance() {
+    this.showBalance.update(value => !value);
+  }
+
 }

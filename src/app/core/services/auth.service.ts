@@ -30,6 +30,7 @@ export class AuthService {
   private currentState: AuthState = {
     isLoggedIn: false,
     userId: null,
+    name: null,
     role: null
   };
 
@@ -59,6 +60,7 @@ export class AuthService {
           const state: AuthState = {
             isLoggedIn: true,
             userId: user.id,
+            name: user.name,
             role: user.role
           };
 

@@ -1,0 +1,90 @@
+<div class="bills-card">
+
+  <div class="section-header">
+
+    <div>
+
+      <h5>
+        Upcoming Bills
+      </h5>
+
+      <p>
+        Stay ahead of your upcoming payments
+      </p>
+
+    </div>
+
+  </div>
+
+  @if(dashboard.upcomingBills().length > 0){
+
+    <div class="bills-list">
+
+      @for(
+        bill of dashboard.upcomingBills();
+        track bill.id
+      ){
+
+        <div class="bill-item">
+
+          <div class="bill-icon">
+
+            {{
+              bill.billerName
+                .charAt(0)
+                .toUpperCase()
+            }}
+
+          </div>
+
+          <div class="bill-details">
+
+            <div class="bill-name">
+
+              {{
+                bill.billerName
+              }}
+
+            </div>
+
+            <small class="bill-subtitle">
+
+              Payment Pending
+
+            </small>
+
+          </div>
+
+          <div class="bill-amount">
+
+            ₹{{ bill.amount }}
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  } @else {
+
+    <div class="empty-state">
+
+      <div class="empty-icon">
+        ✓
+      </div>
+
+      <h6>
+        You're all caught up!
+      </h6>
+
+      <p>
+        No upcoming bills at the moment.
+      </p>
+
+    </div>
+
+  }
+
+</div>

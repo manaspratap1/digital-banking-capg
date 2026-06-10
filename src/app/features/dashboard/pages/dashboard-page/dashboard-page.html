@@ -1,225 +1,355 @@
-<div class="dashboard-layout">
+<div class="container py-4">
 
-  <aside class="sidebar">
+  <!-- Hero Section -->
+  <div class="row g-4 mb-4">
 
-    <div class="logo">
-      💳 FinNova
-    </div>
+    <!-- Welcome Card -->
+    <div class="col-lg-8">
 
-    <ul class="menu">
-      <li class="active">🏠 Dashboard</li>
-      <li>💸 Transactions</li>
-      <li>🎯 Savings Goals</li>
-      <li>🔔 Notifications</li>
-      <li>⚙ Settings</li>
-    </ul>
+      <div class="hero-card">
 
-  </aside>
-
-  <main class="main-content">
-
-    <div class="welcome-section">
-
-  <div>
-
-    <h1>Welcome Back, Shalini 👋</h1>
-
-    <p>Track your finances with confidence.</p>
-
-  </div>
-
-  <div class="profile">
-
-    <div class="avatar">
-      SG
-    </div>
-
-  </div>
-
-</div>
-<div class="top-grid">
-
-  <!-- Bank Card -->
-
-  <div class="bank-card">
-
-    <div class="card-top">
-      <span>💳 VISA PLATINUM</span>
-    </div>
-
-    <div class="chip">
-      ▣
-    </div>
-
-    <div class="card-number">
-      **** **** **** 7890
-    </div>
-
-    <div class="card-holder">
-      SHALINI GUPTA
-    </div>
-
-    <div class="card-footer">
-      VALID THRU 12/30
-    </div>
-
-    <div class="card-balance">
-      ₹ {{ totalBalance() | number }}
-    </div>
-
-  </div>
-
-  <!-- Right Side -->
-
-  <div class="right-panel">
-
-    <!-- Analytics -->
-
-    <div class="analytics-card">
-
-      <h3>Monthly Analytics</h3>
-
-      <div class="chart-container">
-
-        <div class="bar income">
-          <span>Income</span>
-        </div>
-
-        <div class="bar expense">
-          <span>Expense</span>
-        </div>
-
-        <div class="bar savings">
-          <span>Savings</span>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- Quick Actions -->
-
-    <div class="quick-actions">
-
-      <div class="action-card">
-        <div class="action-icon">💸</div>
-        <span>Transfer</span>
-      </div>
-
-      <div class="action-card">
-        <div class="action-icon">💳</div>
-        <span>Pay Bills</span>
-      </div>
-
-      <div class="action-card">
-        <div class="action-icon">🎯</div>
-        <span>Savings Goal</span>
-      </div>
-
-      <div class="action-card">
-        <div class="action-icon">📄</div>
-        <span>Statement</span>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-    <div class="stats-grid">
-
-     <div class="stat-card">
-  <div class="stat-icon">🏦</div>
-  <h2>{{ accounts().length }}</h2>
-  <p>Accounts</p>
-</div>
-
-      <div class="stat-card">
-        <h2>{{ transactions().length }}</h2>
-        <p>Transactions</p>
-      </div>
-
-      <div class="stat-card">
-        <h2>{{ unreadNotifications() }}</h2>
-        <p>Alerts</p>
-      </div>
-
-      <div class="stat-card">
-        <h2>{{ savingsGoals().length }}</h2>
-        <p>Goals</p>
-      </div>
-
-    </div>
-
-    <div class="bottom-grid">
-
-      <div class="glass-card">
-
-        <h3>Recent Transactions</h3>
-
-        @for(transaction of transactions(); track transaction.id){
-
-        <div class="transaction">
+        <div class="hero-content">
 
           <div>
-            <div class="transaction-left">
 
-  <div class="transaction-avatar">
-    🛒
-  </div>
+            <span class="hero-label">
+              DIGITAL BANKING
+            </span>
 
-  <div>
-    <strong>{{ transaction.description }}</strong>
-    <p>{{ transaction.category }}</p>
-  </div>
+            <h2>
+              {{ greeting() }},
+              {{ userName() }}
+            </h2>
 
-</div>
-            
+            <p class="hero-subtitle">
+              Here's your financial overview for today.
+            </p>
+
+            <div class="account-info">
+
+              @if(dashboard.account()) {
+
+                <span class="account-type">
+                  {{
+                    dashboard.account()?.accountType
+                  }}
+                </span>
+
+                <span class="separator">
+                  •
+                </span>
+
+                <span>
+                  {{
+                    dashboard.account()?.accountNumber
+                  }}
+                </span>
+
+              }
+
+            </div>
+
           </div>
 
-          <span class="amount">
-            ₹{{ transaction.amount }}
+          <div class="balance-section">
+
+            <div class="balance-header">
+
+              <span class="balance-label">
+                Available Balance
+              </span>
+
+              <button
+                class="balance-toggle"
+                (click)="toggleBalance()">
+
+                @if(showBalance()) {
+
+                  <i class="bi bi-eye-slash"></i>
+
+                } @else {
+
+                  <i class="bi bi-eye"></i>
+
+                }
+
+              </button>
+
+            </div>
+
+            <h1>
+
+              @if(showBalance()) {
+
+                ₹{{ dashboard.availableBalance() }}
+
+              } @else {
+
+                ₹ •••••••
+
+              }
+
+            </h1>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Debit Card -->
+    <div class="col-lg-4">
+
+      <div class="debit-card">
+
+        <div class="card-top">
+
+          <span>
+            DIGITAL BANK
+          </span>
+
+          <span class="chip">
+            <i class="bi bi-credit-card-2-front"></i>
           </span>
 
         </div>
 
-        }
+        <div class="card-number">
 
-      </div>
+          @if(dashboard.account()) {
 
-      <div class="glass-card">
+            ●●●● ●●●● ●●●●
+            {{
+              dashboard
+                .account()
+                ?.accountNumber
+                ?.slice(-4)
+            }}
 
-       <h3>Notifications</h3>
+          }
 
-@if(notifications().length === 0){
+        </div>
 
-<div class="empty-state">
-  🔔 No notifications available
-</div>
+        <div class="card-bottom">
 
-}
+          <div>
 
-@else {
+            <span class="card-label">
+              ACCOUNT HOLDER
+            </span>
 
-@for(notification of notifications(); track notification.id){
+            <div class="card-value">
+              {{ userName() | uppercase }}
+            </div>
 
-<div class="notification">
-  {{ notification.message }}
-</div>
+          </div>
 
-}
+          <div>
 
-}
+            <span class="card-label">
+              TYPE
+            </span>
 
-        
+            <div class="card-value">
+
+              @if(dashboard.account()) {
+
+                {{
+                  dashboard
+                    .account()
+                    ?.accountType
+                }}
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
     </div>
 
-  </main>
+  </div>
+
+  <!-- Summary Cards -->
+
+  <div class="row g-4">
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+
+        <div class="summary-icon">
+          <i class="bi bi-wallet2"></i>
+        </div>
+
+        <div>
+
+          <h6>
+            Balance
+          </h6>
+
+          <h3>
+
+            @if(showBalance()) {
+
+              ₹{{ dashboard.availableBalance() }}
+
+            } @else {
+
+              ₹ •••••••
+
+            }
+
+          </h3>
+
+          <small>
+            Available Funds
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+
+        <div class="summary-icon">
+          <i class="bi bi-arrow-down-circle"></i>
+        </div>
+
+        <div>
+
+          <h6>
+            Income
+          </h6>
+
+          <h3>
+            ₹{{
+              dashboard.monthlyIncome()
+            }}
+          </h3>
+
+          <small>
+            This Month
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+
+        <div class="summary-icon">
+          <i class="bi bi-arrow-up-circle"></i>
+        </div>
+
+        <div>
+
+          <h6>
+            Expense
+          </h6>
+
+          <h3>
+            ₹{{
+              dashboard.monthlyExpense()
+            }}
+          </h3>
+
+          <small>
+            This Month
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+
+        <div class="summary-icon">
+          <i class="bi bi-receipt"></i>
+        </div>
+
+        <div>
+
+          <h6>
+            Pending Bills
+          </h6>
+
+          <h3>
+            {{
+              dashboard.pendingBillsCount()
+            }}
+          </h3>
+
+          <small>
+            Awaiting Payment
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Quick Actions -->
+
+  <div class="row mt-4">
+
+    <div class="col-12">
+
+      <app-quick-actions />
+
+    </div>
+
+  </div>
+
+  <!-- Transactions + Bills -->
+
+  <div class="row mt-4 g-4">
+
+    <div class="col-lg-8">
+
+      <app-recent-transactions />
+
+    </div>
+
+    <div class="col-lg-4">
+
+      <app-upcoming-bills />
+
+    </div>
+
+  </div>
+
+  <!-- Financial Snapshot -->
+
+  <div class="row mt-4">
+
+    <div class="col-12">
+
+      <app-financial-snapshot />
+
+    </div>
+
+  </div>
 
 </div>
-<h1>dashboard-page works!</h1>

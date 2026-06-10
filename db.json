@@ -20,7 +20,7 @@
       "id": "1",
       "userId": 2,
       "accountNumber": "1234567890",
-      "balance": 28000,
+      "balance": 27000,
       "accountType": "Savings"
     }
   ],
@@ -177,38 +177,6 @@
       "date": "2026-06-11",
       "description": "dalali",
       "referenceNumber": "TRF1781075090812"
-    },
-    {
-      "id": "ztfbW47TXsQ",
-      "accountId": 1,
-      "amount": 3000,
-      "type": "debit",
-      "category": "Transfer",
-      "date": "2026-06-10",
-      "description": "bakchodi",
-      "referenceNumber": "TRF1781075247913"
-    },
-    {
-      "id": "R9pJCzsXiyE",
-      "accountId": 1,
-      "beneficiaryId": null,
-      "amount": 1500,
-      "type": "debit",
-      "category": "Transfer",
-      "date": "2026-06-10",
-      "description": "Expense",
-      "referenceNumber": "TRF1781081661478"
-    },
-    {
-      "id": "nFokg5vPuuo",
-      "accountId": 1,
-      "beneficiaryId": null,
-      "amount": 500,
-      "type": "debit",
-      "category": "Transfer",
-      "date": "2026-06-10",
-      "description": "Daily change",
-      "referenceNumber": "TRF1781083593476"
     }
   ],
   "beneficiaries": [

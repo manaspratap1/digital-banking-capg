@@ -1,0 +1,141 @@
+<div class="snapshot-card">
+
+  <div class="section-header">
+
+    <div>
+
+      <h5>
+        Financial Snapshot
+      </h5>
+
+      <p>
+        Key highlights from your finances
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="row g-4">
+
+    <div class="col-md-4">
+
+      <div class="snapshot-item">
+
+        <div class="snapshot-icon spending">
+
+          <i class="bi bi-pie-chart"></i>
+
+        </div>
+
+        <div>
+
+          <span class="snapshot-label">
+
+            Highest Spending
+
+          </span>
+
+          <h4>
+
+            {{
+              finance
+                .highestSpendingCategory()
+            }}
+
+          </h4>
+
+          <small>
+
+            Top expense category
+
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="snapshot-item">
+
+        <div class="snapshot-icon savings">
+
+          <i class="bi bi-piggy-bank"></i>
+
+        </div>
+
+        <div>
+
+          <span class="snapshot-label">
+
+            Savings Rate
+
+          </span>
+
+          <h4>
+
+            {{
+              finance
+                .savingsRate()
+            }}%
+
+          </h4>
+
+          <small>
+
+            Based on monthly activity
+
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="snapshot-item">
+
+        <div class="snapshot-icon goals">
+
+          <i class="bi bi-bullseye"></i>
+
+        </div>
+
+        <div>
+
+          <span class="snapshot-label">
+
+            Active Goals
+
+          </span>
+
+          <h4>
+
+            {{
+              finance
+                .savingsGoals()
+                .length
+            }}
+
+          </h4>
+
+          <small>
+
+            Goals currently tracked
+
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

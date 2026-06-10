@@ -1,0 +1,171 @@
+<div class="transactions-card">
+
+  <div class="section-header">
+
+    <div>
+
+      <h5>
+        Recent Transactions
+      </h5>
+
+      <p>
+        Your latest account activity
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="table-responsive">
+
+    <table class="table transactions-table">
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Details
+          </th>
+
+          <th>
+            Date
+          </th>
+
+          <th class="text-center">
+            Type
+          </th>
+
+          <th class="text-end">
+            Amount
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        @for(
+          transaction of dashboard.recentTransactions();
+          track transaction.id
+        ){
+
+          <tr>
+
+            <td>
+
+              <div class="transaction-details">
+
+                <div class="category-chip">
+
+                  {{
+                    transaction.category
+                      .charAt(0)
+                      .toUpperCase()
+                  }}
+
+                </div>
+
+                <div>
+
+                  <div class="transaction-category">
+
+                    {{
+                      transaction.category
+                    }}
+
+                  </div>
+
+                  <small
+                    class="transaction-description">
+
+                    {{
+                      transaction.description
+                    }}
+
+                  </small>
+
+                </div>
+
+              </div>
+
+            </td>
+
+            <td>
+
+              <span class="transaction-date">
+
+                {{
+                  transaction.date
+                }}
+
+              </span>
+
+            </td>
+
+            <td class="text-center">
+
+              <span
+
+                class="type-badge"
+
+                [class.credit]="
+                  transaction.type === 'credit'
+                "
+
+                [class.debit]="
+                  transaction.type === 'debit'
+                ">
+
+                {{
+                  transaction.type
+                }}
+
+              </span>
+
+            </td>
+
+            <td class="text-end">
+
+              <span
+
+                class="transaction-amount"
+
+                [class.amount-credit]="
+                  transaction.type === 'credit'
+                "
+
+                [class.amount-debit]="
+                  transaction.type === 'debit'
+                ">
+
+                @if(
+                  transaction.type === 'credit'
+                ){
+
+                  +
+
+                } @else {
+
+                  -
+
+                }
+
+                ₹{{ transaction.amount }}
+
+              </span>
+
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
