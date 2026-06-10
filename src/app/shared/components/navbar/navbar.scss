@@ -1,0 +1,79 @@
+.banking-navbar {
+  background: linear-gradient(
+    90deg,
+    #0f172a,
+    #1e293b
+  );
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+
+  padding: 0.9rem 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+  color: white !important;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.75) !important;
+
+  font-weight: 500;
+
+  margin: 0 0.4rem;
+
+  border-radius: 8px;
+
+  padding: 0.55rem 0.9rem !important;
+
+  transition: all 0.25s ease;
+}
+
+.nav-link:hover {
+  color: white !important;
+
+  background-color: rgba(255, 255, 255, 0.08);
+
+  transform: translateY(-1px);
+}
+
+.active-link {
+  color: white !important;
+
+  background-color: rgba(59, 130, 246, 0.18);
+
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.logout-btn {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  color: white;
+
+  padding: 0.5rem 1.2rem;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+  background-color: white;
+
+  color: #0f172a;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}

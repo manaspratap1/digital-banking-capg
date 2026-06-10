@@ -1,0 +1,88 @@
+<div class="recent-insights-card">
+
+  <div class="card shadow-sm border-0">
+
+    <div class="card-body">
+
+      <h5 class="mb-4">
+        Recent Insights
+      </h5>
+
+      <div class="row g-3">
+
+        <div class="col-md-3">
+
+          <div class="insight-box">
+
+            <h6 class="text-muted">
+              Highest Spending Category
+            </h6>
+
+            <h4>
+              {{ finance.highestSpendingCategory() }}
+            </h4>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <div class="insight-box">
+
+            <h6 class="text-muted">
+              Savings Rate
+            </h6>
+
+            <h4>
+              {{ finance.savingsRate() }}%
+            </h4>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <div class="insight-box">
+
+            <h6 class="text-muted">
+              Active Goals
+            </h6>
+
+            <h4>
+              {{ finance.savingsGoals().length }}
+            </h4>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <div class="insight-box">
+
+            <h6 class="text-muted">
+              Total Goals Value
+            </h6>
+
+            <h4>
+              ₹ {{
+                finance.savingsGoals().reduce(
+                  (sum, goal) => sum + goal.targetAmount,
+                  0
+                )
+              }}
+            </h4>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

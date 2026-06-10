@@ -1,0 +1,63 @@
+.recent-insights-card {
+  margin-bottom: 3rem;
+}
+
+.card {
+  border-radius: 18px;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+h5 {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.insight-box {
+  padding: 1.5rem;
+
+  height: 100%;
+
+  border-radius: 16px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  transition: all 0.25s ease;
+}
+
+.insight-box:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.08);
+
+  background: white;
+}
+
+h6 {
+  font-size: 0.8rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.6px;
+
+  font-weight: 600;
+
+  color: #64748b !important;
+
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  margin: 0;
+
+  font-size: 1.75rem;
+
+  font-weight: 700;
+
+  color: #0f172a;
+}
