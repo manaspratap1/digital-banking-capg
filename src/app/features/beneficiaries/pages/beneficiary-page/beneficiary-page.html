@@ -1,0 +1,143 @@
+<div class="container py-4">
+  <div class="page-header mb-4">
+    <div>
+      <h2>Beneficiaries</h2>
+      <p>Add beneficiary details before making a transfer.</p>
+    </div>
+
+    <a class="btn btn-outline-secondary" routerLink="/transfers">
+      Back to Transfers
+    </a>
+  </div>
+
+  <div class="alert alert-success" *ngIf="successMessage()">
+    {{ successMessage() }}
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage()">
+    {{ errorMessage() }}
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="mb-3">Add Beneficiary</h5>
+
+      <form [formGroup]="beneficiaryForm" (ngSubmit)="addBeneficiary()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Beneficiary Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="Enter beneficiary name">
+
+            <small class="text-danger">
+              {{ getFieldError('name') }}
+            </small>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Bank Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="bankName"
+              placeholder="Enter bank name">
+
+            <small class="text-danger">
+              {{ getFieldError('bankName') }}
+            </small>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Account Number</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="accountNumber"
+              placeholder="Enter account number">
+
+            <small class="text-danger">
+              {{ getFieldError('accountNumber') }}
+            </small>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Confirm Account Number</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="confirmAccountNumber"
+              placeholder="Re-enter account number">
+
+            <small class="text-danger">
+              {{ getFieldError('confirmAccountNumber') }}
+            </small>
+          </div>
+
+          <div class="col-12" *ngIf="beneficiaryForm.errors?.['accountNumberMismatch']">
+            <div class="alert alert-warning mb-0">
+              Account number and confirm account number must match.
+            </div>
+          </div>
+
+          <div class="col-12" *ngIf="beneficiaryForm.errors?.['duplicateBeneficiary']">
+            <div class="alert alert-warning mb-0">
+              This beneficiary account already exists.
+            </div>
+          </div>
+
+          <div class="col-12 text-end">
+            <button class="btn btn-primary" type="submit" [disabled]="isLoading()">
+              Add Beneficiary
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mb-3">Saved Beneficiaries</h5>
+
+      <div class="table-responsive" *ngIf="beneficiaries().length; else noBeneficiaries">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Bank</th>
+              <th>Account Number</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (beneficiary of beneficiaries(); track beneficiary.id) {
+              <tr>
+                <td>{{ beneficiary.name }}</td>
+                <td>{{ beneficiary.bankName }}</td>
+                <td>{{ beneficiary.accountNumber }}</td>
+                <td class="text-end">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    type="button"
+                    (click)="deleteBeneficiary(beneficiary.id)">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #noBeneficiaries>
+        <p class="text-muted mb-0">
+          No beneficiaries added yet.
+        </p>
+      </ng-template>
+    </div>
+  </div>
+</div>

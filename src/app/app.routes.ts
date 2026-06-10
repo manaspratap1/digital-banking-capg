@@ -12,6 +12,8 @@ import { BillPage } from './features/bills/pages/bill-page/bill-page';
 import { FinancePage } from './features/finance-insights/pages/finance-page/finance-page';
 import { TransferPage } from './features/transfers/pages/transfer-page/transfer-page';
 
+import { BeneficiaryPage } from './features/beneficiaries/pages/beneficiary-page/beneficiary-page';
+
 export const routes: Routes = [
 
   {
@@ -61,6 +63,10 @@ export const routes: Routes = [
       path: 'admin',
       component: AdminPage,
       canActivate: [adminGuard]
+    },
+    {
+      path: 'beneficiaries',
+      component: BeneficiaryPage
     },
 
   ]
