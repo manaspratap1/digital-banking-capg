@@ -20,7 +20,7 @@
       "id": "1",
       "userId": 2,
       "accountNumber": "1234567890",
-      "balance": 30000,
+      "balance": 28500,
       "accountType": "Savings"
     }
   ],
@@ -187,6 +187,17 @@
       "date": "2026-06-10",
       "description": "bakchodi",
       "referenceNumber": "TRF1781075247913"
+    },
+    {
+      "id": "R9pJCzsXiyE",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 1500,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "Expense",
+      "referenceNumber": "TRF1781081661478"
     }
   ],
   "beneficiaries": [
@@ -215,15 +226,6 @@
       "billerName": "Airtel",
       "amount": 1200,
       "dueDate": "2026-06-18",
-      "status": "paid"
-    },
-    {
-      "id": "4",
-      "userId": 2,
-      "category": "Gas",
-      "billerName": "Indane Gas",
-      "amount": 950,
-      "dueDate": "2026-06-22",
       "status": "paid"
     },
     {

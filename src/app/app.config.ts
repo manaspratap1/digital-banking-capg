@@ -6,6 +6,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideStore } from '@ngrx/store';
 import { authReducer } from './core/store/auth/auth.reducer';
+import {
+  provideStoreDevtools
+} from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     provideCharts(withDefaultRegisterables()),
-    provideStore({auth: authReducer})
+    provideStore({auth: authReducer}),
+    provideStoreDevtools({ maxAge: 25 })
   ]
 };

@@ -1,82 +1,330 @@
+.container {
+  max-width: 1400px;
+  padding-bottom: 3rem;
+}
+
+/* ===========================
+   Header
+=========================== */
+
 .transfer-header {
   display: flex;
-  align-items: center;
+
   justify-content: space-between;
-  gap: 16px;
 
-  h2 {
-    margin: 0;
-    font-weight: 700;
-  }
+  align-items: center;
 
-  p {
-    margin: 4px 0 0;
-    color: #6c757d;
-  }
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+}
+
+.transfer-header h2 {
+  margin: 0;
+
+  font-weight: 700;
+
+  color: #1e293b;
+}
+
+.transfer-header p {
+  margin: 0.4rem 0 0;
+
+  color: #64748b;
+}
+
+.header-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  flex-wrap: wrap;
 }
 
 .balance-box {
-  min-width: 220px;
-  padding: 16px;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  background: #f8f9fa;
+  background: white;
 
-  span {
-    display: block;
-    font-size: 13px;
-    color: #6c757d;
-  }
+  border-radius: 16px;
 
-  strong {
-    display: block;
-    margin-top: 4px;
-    font-size: 22px;
-  }
+  padding: 0.9rem 1.25rem;
+
+  box-shadow:
+    0 4px 20px rgba(15, 23, 42, 0.05);
+
+  display: flex;
+
+  flex-direction: column;
 }
+
+.balance-box span {
+  font-size: 0.8rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+
+  color: #64748b;
+}
+
+.balance-box strong {
+  font-size: 1.25rem;
+
+  color: #16a34a;
+
+  font-weight: 700;
+}
+
+/* ===========================
+   Cards
+=========================== */
 
 .card {
-  border-radius: 8px;
+  border: none;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 20px rgba(15, 23, 42, 0.05);
 }
+
+.card-body {
+  padding: 2rem;
+}
+
+.card h5 {
+  font-weight: 700;
+
+  color: #1e293b;
+}
+
+/* ===========================
+   Form
+=========================== */
+
+.form-label {
+  font-weight: 600;
+
+  color: #334155;
+
+  margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 12px;
+
+  border: 1px solid #dbe2ea;
+
+  padding: 0.75rem 1rem;
+
+  transition: all 0.2s ease;
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3b82f6;
+
+  box-shadow:
+    0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+.text-danger {
+  display: block;
+
+  margin-top: 0.4rem;
+
+  font-size: 0.85rem;
+}
+
+/* ===========================
+   Alerts
+=========================== */
+
+.alert {
+  border: none;
+
+  border-radius: 14px;
+
+  padding: 1rem 1.25rem;
+}
+
+.alert-danger {
+  background: #fee2e2;
+
+  color: #991b1b;
+}
+
+.alert-warning {
+  background: #fef3c7;
+
+  color: #92400e;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn-primary {
+  border: none;
+
+  border-radius: 12px;
+
+  background: #2563eb;
+
+  font-weight: 600;
+
+  padding: 0.75rem 1.5rem;
+
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  border: none;
+
+  border-radius: 12px;
+
+  background: #16a34a;
+
+  font-weight: 600;
+
+  padding: 0.75rem 1.5rem;
+
+  transition: all 0.2s ease;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: #15803d;
+
+  transform: translateY(-1px);
+}
+
+.btn-outline-secondary,
+.btn-outline-primary {
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  padding: 0.75rem 1.4rem;
+}
+
+.btn:disabled {
+  opacity: 0.7;
+}
+
+/* ===========================
+   Review Step
+=========================== */
 
 .review-grid {
   display: grid;
+
   grid-template-columns: 180px 1fr;
-  gap: 12px 18px;
 
-  span {
-    color: #6c757d;
-  }
+  gap: 1rem 2rem;
 
-  strong {
-    font-weight: 600;
-  }
+  margin-top: 1rem;
 }
 
+.review-grid span {
+  color: #64748b;
+
+  font-weight: 500;
+}
+
+.review-grid strong {
+  color: #1e293b;
+
+  font-weight: 600;
+}
+
+/* ===========================
+   Success State
+=========================== */
+
 .success-card {
-  max-width: 520px;
-  margin: 0 auto;
+  text-align: center;
+}
+
+.success-card h4 {
+  color: #15803d;
+
+  font-weight: 700;
+
+  margin-bottom: 1rem;
+}
+
+.success-card p {
+  color: #64748b;
+
+  margin-bottom: 2rem;
 }
 
 .reference-box {
   display: inline-block;
-  padding: 12px 16px;
-  border-radius: 8px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  padding: 1rem 1.5rem;
+
+  color: #475569;
 }
 
+.reference-box strong {
+  color: #1e293b;
+
+  margin-left: 0.5rem;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
 @media (max-width: 768px) {
+
   .transfer-header {
-    align-items: stretch;
     flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .header-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .header-actions .btn {
+    width: 100%;
   }
 
   .balance-box {
     width: 100%;
   }
 
+  .card-body {
+    padding: 1.5rem;
+  }
+
   .review-grid {
     grid-template-columns: 1fr;
   }
+
 }
