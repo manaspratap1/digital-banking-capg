@@ -1,11 +1,22 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { AuthState } from '../../shared/models/auth-state.model';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { map, Observable, tap } from 'rxjs';
+
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
+import { Store } from '@ngrx/store';
+
 import { environment } from '../../../environment';
-import { AUTH_STORAGE_KEY } from '../constants/auth.constant';
+
 import { User } from '../../shared/models/user.model';
+import { AuthState } from '../../shared/models/auth-state.model';
+
+import { AUTH_STORAGE_KEY } from '../constants/auth.constant';
+
+import { loginSuccess, logout as logoutAction } from '../store/auth/auth.actions';
+
+import { selectAuthState } from '../store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -14,56 +25,82 @@ export class AuthService {
 
   private http = inject(HttpClient);
   private router = inject(Router);
+  private store = inject(Store);
 
-  private authState = signal<AuthState>({
+  private currentState: AuthState = {
     isLoggedIn: false,
     userId: null,
     role: null
-  });
+  };
 
-  readonly state = this.authState.asReadonly();
+  constructor() {
+    this.store
+      .select(selectAuthState)
+      .subscribe(state => {
+        this.currentState = state;
+      });
+  }
 
-  login(email: string, password: string): Observable<boolean> {
-    return this.http.get<User[]>(`${environment.apiUrl}/users?email=${email}&password=${password}`)
-               .pipe(
-                  map(users => users[0]),
-                  tap(user => {
-                    if(!user){
-                      return;
-                    }
-                    
-                    const state: AuthState = {
-                      isLoggedIn: true,
-                      userId: user.id,
-                      role: user.role
-                    };
+  login( email: string, password: string ): Observable<boolean> {
+    return this.http
+      .get<User[]>(
+        `${environment.apiUrl}/users?email=${email}&password=${password}`
+      )
+      .pipe(
 
-                    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(state));
-                    
-                    this.authState.set(state);
-                  }),
-                  map(user => !!user)
-                );
+        map(users => users[0]),
+
+        tap(user => {
+
+          if (!user) {
+            return;
+          }
+
+          const state: AuthState = {
+            isLoggedIn: true,
+            userId: user.id,
+            role: user.role
+          };
+
+          localStorage.setItem(
+            AUTH_STORAGE_KEY,
+            JSON.stringify(state)
+          );
+
+          this.store.dispatch(
+            loginSuccess({ state })
+          );
+
+        }),
+
+        map(user => !!user)
+
+      );
+
   }
 
   logout(): void {
 
-    localStorage.removeItem(AUTH_STORAGE_KEY);
+    localStorage.removeItem(
+      AUTH_STORAGE_KEY
+    );
 
-    this.authState.set({
-      isLoggedIn: false,
-      userId: null,
-      role: null
-    });
+    this.store.dispatch(
+      logoutAction()
+    );
 
-    this.router.navigate(['/login']);
+    this.router.navigate([
+      '/login'
+    ]);
+
   }
 
   restoreSession(): void {
 
-    const storedData = localStorage.getItem(
-      AUTH_STORAGE_KEY
-    );
+    const storedData =
+      localStorage.getItem(
+        AUTH_STORAGE_KEY
+      );
 
     if (!storedData) {
       return;
@@ -72,18 +109,30 @@ export class AuthService {
     const state: AuthState =
       JSON.parse(storedData);
 
-    this.authState.set(state);
+    this.store.dispatch(
+      loginSuccess({ state })
+    );
+
   }
 
   isLoggedIn(): boolean {
-    return this.authState().isLoggedIn;
+
+    return this.currentState
+      .isLoggedIn;
+
   }
 
   getRole() {
-    return this.authState().role;
+
+    return this.currentState
+      .role;
+
   }
 
   currentUser() {
-    return this.authState();
+
+    return this.currentState;
+
   }
+
 }
