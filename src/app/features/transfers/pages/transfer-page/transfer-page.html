@@ -1,1 +1,186 @@
-<h1>transfer-page works!</h1>
+
+
+<div class="container py-4">
+  <div class="transfer-header mb-4">
+    <div>
+      <h2>Fund Transfer</h2>
+      <p>Transfer money to beneficiaries or another account.</p>
+    </div>
+    <div class="header-actions">
+    <a class="btn btn-outline-primary" routerLink="/beneficiaries">
+      Add Beneficiary
+    </a>
+
+    <div class="balance-box" *ngIf="selectedAccount() as account">
+      <span>Available Balance</span>
+      <strong>{{ account.balance | currency: 'INR' }}</strong>
+    </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage()">
+    {{ errorMessage() }}
+  </div>
+
+  <div class="card" *ngIf="step() === 'form'">
+    <div class="card-body">
+      <form [formGroup]="transferForm" (ngSubmit)="goToReview()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Transfer Type</label>
+            <select class="form-select" formControlName="transferType">
+              @for (type of transferTypes; track type.value) {
+                <option [value]="type.value">
+                  {{ type.label }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">From Account</label>
+            <select class="form-select" formControlName="fromAccountId">
+              @for (account of accounts(); track account.id) {
+                <option [value]="account.id">
+                  {{ account.accountType }} - {{ account.accountNumber }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6" *ngIf="transferForm.value.transferType === 'beneficiary'">
+            <label class="form-label">Beneficiary</label>
+            <select class="form-select" formControlName="beneficiaryId">
+              <option value="">Select beneficiary</option>
+
+              @for (beneficiary of beneficiaries(); track beneficiary.id) {
+                <option [value]="beneficiary.id">
+                  {{ beneficiary.name }} - {{ beneficiary.bankName }}
+                </option>
+              }
+            </select>
+
+            <small class="text-danger" *ngIf="transferForm.touched && transferForm.errors?.['beneficiaryRequired']">
+              Please select a beneficiary.
+            </small>
+          </div>
+
+          <div class="col-md-6" *ngIf="transferForm.value.transferType === 'own'">
+            <label class="form-label">To Account Number</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="toAccountNumber"
+              placeholder="Enter account number">
+
+            <small class="text-danger" *ngIf="transferForm.touched && transferForm.errors?.['accountRequired']">
+              Please enter account number.
+            </small>
+          </div>
+
+          @for (field of dynamicFields; track field.name) {
+            <div class="col-md-6" *ngIf="field.name !== 'scheduledDate' || transferForm.value.scheduleType === 'scheduled'">
+              <label class="form-label">{{ field.label }}</label>
+              <input
+                [type]="field.type"
+                class="form-control"
+                [formControlName]="field.name"
+                [placeholder]="field.placeholder">
+
+              <small class="text-danger">
+                {{ getFieldError(field.name) }}
+              </small>
+            </div>
+          }
+
+          <div class="col-md-6">
+            <label class="form-label">Schedule Type</label>
+            <select class="form-select" formControlName="scheduleType">
+              <option value="immediate">Immediate</option>
+              <option value="scheduled">Scheduled</option>
+            </select>
+          </div>
+
+          <div class="col-12" *ngIf="transferForm.errors?.['insufficientBalance']">
+            <div class="alert alert-warning mb-0">
+              Transfer amount cannot be greater than available balance.
+            </div>
+          </div>
+
+          <div class="col-12" *ngIf="transferForm.errors?.['scheduleDateRequired'] || transferForm.errors?.['invalidScheduleDate']">
+            <div class="alert alert-warning mb-0">
+              Scheduled transfer date must be from today up to 30 days.
+            </div>
+          </div>
+
+          <div class="col-12 text-end">
+            <button class="btn btn-primary" type="submit" [disabled]="isLoading()">
+              Review Transfer
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card" *ngIf="step() === 'review'">
+    <div class="card-body">
+      <h5 class="mb-3">Review Transfer</h5>
+
+      <div class="review-grid">
+        <span>From Account</span>
+        <strong>{{ selectedAccount()?.accountNumber }}</strong>
+
+        <span>Payee</span>
+        <strong>
+          @if (transferForm.value.transferType === 'beneficiary') {
+            {{ selectedBeneficiary()?.name }}
+          } @else {
+            {{ transferForm.value.toAccountNumber }}
+          }
+        </strong>
+
+        <span>Amount</span>
+        <strong>{{ transferForm.value.amount | currency: 'INR' }}</strong>
+
+        <span>Transfer Date</span>
+        <strong>
+          @if (transferForm.value.scheduleType === 'scheduled') {
+            {{ transferForm.value.scheduledDate | date }}
+          } @else {
+            Immediate
+          }
+        </strong>
+
+        <span>Description</span>
+        <strong>{{ transferForm.value.description }}</strong>
+      </div>
+
+      <div class="d-flex gap-2 justify-content-end mt-4">
+        <button class="btn btn-outline-secondary" type="button" (click)="editTransfer()">
+          Edit
+        </button>
+
+        <button class="btn btn-success" type="button" (click)="confirmTransfer()" [disabled]="isLoading()">
+          Confirm Transfer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card success-card" *ngIf="step() === 'success'">
+    <div class="card-body text-center">
+      <h4>Transfer Successful</h4>
+      <p>Your transfer has been submitted successfully.</p>
+
+      <div class="reference-box">
+        Reference Number:
+        <strong>{{ successReference() }}</strong>
+      </div>
+
+      <button class="btn btn-primary mt-4" type="button" (click)="startNewTransfer()">
+        New Transfer
+      </button>
+    </div>
+  </div>
+</div>

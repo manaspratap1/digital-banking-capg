@@ -1,0 +1,82 @@
+.transfer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  h2 {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: #6c757d;
+  }
+}
+
+.balance-box {
+  min-width: 220px;
+  padding: 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: #f8f9fa;
+
+  span {
+    display: block;
+    font-size: 13px;
+    color: #6c757d;
+  }
+
+  strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 22px;
+  }
+}
+
+.card {
+  border-radius: 8px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 12px 18px;
+
+  span {
+    color: #6c757d;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.success-card {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.reference-box {
+  display: inline-block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+@media (max-width: 768px) {
+  .transfer-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .balance-box {
+    width: 100%;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+}
