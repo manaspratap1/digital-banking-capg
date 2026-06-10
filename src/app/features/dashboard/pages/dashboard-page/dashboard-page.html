@@ -1,225 +1,171 @@
-<div class="dashboard-layout">
-
-  <aside class="sidebar">
-
-    <div class="logo">
-      💳 FinNova
-    </div>
-
-    <ul class="menu">
-      <li class="active">🏠 Dashboard</li>
-      <li>💸 Transactions</li>
-      <li>🎯 Savings Goals</li>
-      <li>🔔 Notifications</li>
-      <li>⚙ Settings</li>
-    </ul>
-
-  </aside>
-
-  <main class="main-content">
-
-    <div class="welcome-section">
-
-  <div>
-
-    <h1>Welcome Back, Shalini 👋</h1>
-
-    <p>Track your finances with confidence.</p>
-
-  </div>
-
-  <div class="profile">
-
-    <div class="avatar">
-      SG
-    </div>
-
-  </div>
-
-</div>
-<div class="top-grid">
-
-  <!-- Bank Card -->
-
-  <div class="bank-card">
-
-    <div class="card-top">
-      <span>💳 VISA PLATINUM</span>
-    </div>
-
-    <div class="chip">
-      ▣
-    </div>
-
-    <div class="card-number">
-      **** **** **** 7890
-    </div>
-
-    <div class="card-holder">
-      SHALINI GUPTA
-    </div>
-
-    <div class="card-footer">
-      VALID THRU 12/30
-    </div>
-
-    <div class="card-balance">
-      ₹ {{ totalBalance() | number }}
-    </div>
-
-  </div>
-
-  <!-- Right Side -->
-
-  <div class="right-panel">
-
-    <!-- Analytics -->
-
-    <div class="analytics-card">
-
-      <h3>Monthly Analytics</h3>
-
-      <div class="chart-container">
-
-        <div class="bar income">
-          <span>Income</span>
-        </div>
-
-        <div class="bar expense">
-          <span>Expense</span>
-        </div>
-
-        <div class="bar savings">
-          <span>Savings</span>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- Quick Actions -->
-
-    <div class="quick-actions">
-
-      <div class="action-card">
-        <div class="action-icon">💸</div>
-        <span>Transfer</span>
-      </div>
-
-      <div class="action-card">
-        <div class="action-icon">💳</div>
-        <span>Pay Bills</span>
-      </div>
-
-      <div class="action-card">
-        <div class="action-icon">🎯</div>
-        <span>Savings Goal</span>
-      </div>
-
-      <div class="action-card">
-        <div class="action-icon">📄</div>
-        <span>Statement</span>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-    <div class="stats-grid">
-
-     <div class="stat-card">
-  <div class="stat-icon">🏦</div>
-  <h2>{{ accounts().length }}</h2>
-  <p>Accounts</p>
-</div>
-
-      <div class="stat-card">
-        <h2>{{ transactions().length }}</h2>
-        <p>Transactions</p>
-      </div>
-
-      <div class="stat-card">
-        <h2>{{ unreadNotifications() }}</h2>
-        <p>Alerts</p>
-      </div>
-
-      <div class="stat-card">
-        <h2>{{ savingsGoals().length }}</h2>
-        <p>Goals</p>
-      </div>
-
-    </div>
-
-    <div class="bottom-grid">
-
-      <div class="glass-card">
-
-        <h3>Recent Transactions</h3>
-
-        @for(transaction of transactions(); track transaction.id){
-
-        <div class="transaction">
-
-          <div>
-            <div class="transaction-left">
-
-  <div class="transaction-avatar">
-    🛒
-  </div>
-
-  <div>
-    <strong>{{ transaction.description }}</strong>
-    <p>{{ transaction.category }}</p>
-  </div>
-
-</div>
-            
-          </div>
-
-          <span class="amount">
-            ₹{{ transaction.amount }}
-          </span>
-
-        </div>
-
+<div class="dsh">
+  <!-- Hero: total balance + primary account card -->
+  <section class="dsh-hero">
+    <div class="dsh-hero__main">
+      <span class="dsh-hero__eyebrow">Total balance</span>
+      <h1 class="dsh-hero__balance">
+        {{ totalBalance() | currency:'INR':'symbol-narrow':'1.0-0' }}
+      </h1>
+      <p class="dsh-hero__sub">
+        Across {{ accounts().length }} account{{ accounts().length === 1 ? '' : 's' }}
+        @if (unreadCount() > 0) {
+          <span class="dsh-hero__dot" aria-hidden="true"></span>
+          <span class="dsh-hero__unread">{{ unreadCount() }} unread notification{{ unreadCount() === 1 ? '' : 's' }}</span>
         }
-
-      </div>
-
-      <div class="glass-card">
-
-       <h3>Notifications</h3>
-
-@if(notifications().length === 0){
-
-<div class="empty-state">
-  🔔 No notifications available
-</div>
-
-}
-
-@else {
-
-@for(notification of notifications(); track notification.id){
-
-<div class="notification">
-  {{ notification.message }}
-</div>
-
-}
-
-}
-
-        
-
-      </div>
-
+      </p>
     </div>
-
-  </main>
-
+    @if (accounts().length > 0) {
+      <div class="dsh-hero__card">
+        <div class="dsh-hero__card-aurora"></div>
+        <div class="dsh-hero__card-inner">
+          <div class="dsh-hero__card-top">
+            <span class="dsh-hero__card-brand">NEXORA</span>
+            <span class="dsh-hero__card-type">{{ accounts()[0].accountType | titlecase }}</span>
+          </div>
+          <span class="dsh-hero__card-balance">
+            {{ accounts()[0].balance | currency:'INR':'symbol-narrow':'1.0-0' }}
+          </span>
+          <span class="dsh-hero__card-number">
+            •••• {{ accounts()[0].accountNumber.slice(-4) }}
+          </span>
+        </div>
+      </div>
+    }
+  </section>
+  <!-- Quick actions -->
+  <section class="dsh-actions" aria-label="Quick actions">
+    <button class="dsh-actions__btn" type="button" (click)="onQuickAction('transfer')">
+      <span class="dsh-actions__icon dsh-actions__icon--teal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </span>
+      <span>Transfer</span>
+    </button>
+    <button class="dsh-actions__btn" type="button" (click)="onQuickAction('pay-bill')">
+      <span class="dsh-actions__icon dsh-actions__icon--amber">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </span>
+      <span>Pay bill</span>
+    </button>
+    <button class="dsh-actions__btn" type="button" (click)="onQuickAction('add-beneficiary')">
+      <span class="dsh-actions__icon dsh-actions__icon--violet">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+      </span>
+      <span>Beneficiary</span>
+    </button>
+    <button class="dsh-actions__btn" type="button" (click)="onQuickAction('statements')">
+      <span class="dsh-actions__icon dsh-actions__icon--rose">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </span>
+      <span>Statement</span>
+    </button>
+  </section>
+  <!-- Summary grid -->
+  <div class="dsh-grid">
+    <!-- Accounts snapshot -->
+    <section class="dsh-panel dsh-panel--accounts">
+      <div class="dsh-panel__hd">
+        <h2 class="dsh-panel__title">Accounts</h2>
+        <a routerLink="/transactions" class="dsh-panel__link">View all</a>
+      </div>
+      <ul class="dsh-accts">
+        @for (acct of accounts(); track acct.id) {
+          <li class="dsh-accts__row">
+            <span class="dsh-accts__dot" [class]="'dsh-accts__dot--' + (acct.accountType | lowercase)"></span>
+            <div class="dsh-accts__info">
+              <span class="dsh-accts__name">{{ acct.accountType | titlecase }}</span>
+              <span class="dsh-accts__num">•••• {{ acct.accountNumber.slice(-4) }}</span>
+            </div>
+            <span class="dsh-accts__bal">
+              {{ acct.balance | currency:'INR':'symbol-narrow':'1.0-0' }}
+            </span>
+          </li>
+        }
+        @if (!accounts().length) {
+          <li class="dsh-panel__empty">No accounts found</li>
+        }
+      </ul>
+    </section>
+    <!-- Recent transactions preview -->
+    <section class="dsh-panel dsh-panel--txns">
+      <div class="dsh-panel__hd">
+        <h2 class="dsh-panel__title">Recent activity</h2>
+        <a routerLink="/transactions" class="dsh-panel__link">All transactions</a>
+      </div>
+      <ul class="dsh-txns">
+        @for (tx of recentTransactions(); track tx.id) {
+          <li class="dsh-txn">
+            <span class="dsh-txn__icon" [class]="'dsh-txn__icon--' + (tx.category || 'other')">
+              {{ getCategoryIcon(tx.category) }}
+            </span>
+            <div class="dsh-txn__info">
+              <span class="dsh-txn__desc">{{ tx.description }}</span>
+              <span class="dsh-txn__meta">{{ tx.date | date:'d MMM' }} · {{ tx.category | titlecase }}</span>
+            </div>
+            <span class="dsh-txn__amt"
+              [class.dsh-txn__amt--cr]="tx.type === 'credit'"
+              [class.dsh-txn__amt--dr]="tx.type === 'debit'">
+              {{ tx.type === 'debit' ? '−' : '+' }}{{ tx.amount | currency:'INR':'symbol-narrow':'1.0-0' }}
+            </span>
+          </li>
+        }
+        @if (!recentTransactions().length) {
+          <li class="dsh-panel__empty">No recent transactions</li>
+        }
+      </ul>
+    </section>
+    <!-- Notifications peek -->
+    <section class="dsh-panel dsh-panel--notifs">
+      <div class="dsh-panel__hd">
+        <h2 class="dsh-panel__title">Notifications</h2>
+        <a routerLink="/notifications" class="dsh-panel__link">See all</a>
+      </div>
+      <ul class="dsh-notifs">
+        @for (n of notifications().slice(0, 3); track n.id) {
+          <li class="dsh-notif" [class.dsh-notif--unread]="!n.isRead">
+            <span class="dsh-notif__stripe" [class.dsh-notif__stripe--unread]="!n.isRead"></span>
+            <div class="dsh-notif__body">
+              <p class="dsh-notif__msg">{{ n.message }}</p>
+              <span class="dsh-notif__time">{{ n.date | date:'d MMM, h:mm a' }}</span>
+            </div>
+            <span class="dsh-notif__badge">{{ getNotifIcon(n.isRead) }}</span>
+          </li>
+        }
+        @if (!notifications().length) {
+          <li class="dsh-panel__empty">All caught up</li>
+        }
+      </ul>
+    </section>
+    <!-- Savings goals peek -->
+    <section class="dsh-panel dsh-panel--goals">
+      <div class="dsh-panel__hd">
+        <h2 class="dsh-panel__title">Savings goals</h2>
+        <a routerLink="/savings-goals" class="dsh-panel__link">All goals</a>
+      </div>
+      <ul class="dsh-goals">
+        @for (g of savingsProgress().slice(0, 3); track g.id) {
+          <li class="dsh-goal">
+            <div class="dsh-goal__hd">
+              <span class="dsh-goal__name">{{ g.name }}</span>
+              <span class="dsh-goal__pct" [class.dsh-goal__pct--done]="g.progressPercent >= 100">
+                {{ g.progressPercent }}%
+              </span>
+            </div>
+            <div class="dsh-goal__bar">
+              <div class="dsh-goal__bar-fill"
+                [style.width.%]="g.progressPercent"
+                [class.dsh-goal__bar-fill--done]="g.progressPercent >= 100">
+              </div>
+            </div>
+            <div class="dsh-goal__amts">
+              <span>{{ g.currentAmount | currency:'INR':'symbol-narrow':'1.0-0' }}</span>
+              <span class="dsh-goal__target">of {{ g.targetAmount | currency:'INR':'symbol-narrow':'1.0-0' }}</span>
+            </div>
+          </li>
+        }
+        @if (!savingsProgress().length) {
+          <li class="dsh-panel__empty">No goals set</li>
+        }
+      </ul>
+    </section>
+  </div>
 </div>
-<h1>dashboard-page works!</h1>

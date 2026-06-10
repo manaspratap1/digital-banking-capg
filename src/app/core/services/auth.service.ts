@@ -7,7 +7,7 @@ import { map, tap } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 
-import { environment } from '../../../environment';
+import { environment } from '../../../environments';
 
 import { User } from '../../shared/models/user.model';
 import { AuthState } from '../../shared/models/auth-state.model';

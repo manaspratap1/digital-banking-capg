@@ -11,6 +11,7 @@ import { TransactionPage } from './features/transactions/pages/transaction-page/
 import { BillPage } from './features/bills/pages/bill-page/bill-page';
 import { FinancePage } from './features/finance-insights/pages/finance-page/finance-page';
 import { TransferPage } from './features/transfers/pages/transfer-page/transfer-page';
+import { NotificationPage } from './features/notifications/pages/notification-page/notification-page';
 
 export const routes: Routes = [
 
@@ -25,45 +26,50 @@ export const routes: Routes = [
     component: LoginPage,
     canActivate: [guestGuard]
   },
-  
+
   {
-  path: '',
-  component: MainLayout,
-  canActivate: [authGuard],
-  children: [
+    path: '',
+    component: MainLayout,
+    canActivate: [authGuard],
+    children: [
 
-    {
-      path: 'dashboard',
-      component: DashboardPage
-    },
+      {
+        path: 'dashboard',
+        component: DashboardPage
+      },
 
-    {
-      path: 'transactions',
-      component: TransactionPage
-    },
+      {
+        path: 'transactions',
+        component: TransactionPage
+      },
 
-    {
-      path: 'transfers',
-      component: TransferPage
-    },
+      {
+        path: 'transfers',
+        component: TransferPage
+      },
 
-    {
-      path: 'bills',
-      component: BillPage
-    },
+      {
+        path: 'bills',
+        component: BillPage
+      },
 
-    {
-      path: 'finance',
-      component: FinancePage
-    },
+      {
+        path: 'finance',
+        component: FinancePage
+      },
 
-    {
-      path: 'admin',
-      component: AdminPage,
-      canActivate: [adminGuard]
-    },
+      {
+        path: 'notifications',
+        component: NotificationPage
+      },
 
-  ]
-}
+      {
+        path: 'admin',
+        component: AdminPage,
+        canActivate: [adminGuard]
+      },
+
+    ]
+  }
 
 ];

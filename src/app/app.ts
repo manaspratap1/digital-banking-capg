@@ -6,7 +6,7 @@ import { DashboardPage } from './features/dashboard/pages/dashboard-page/dashboa
 
 @Component({
   selector: 'app-root',
-  imports: [DashboardPage],
+  imports: [DashboardPage, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
