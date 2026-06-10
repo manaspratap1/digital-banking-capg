@@ -9,57 +9,49 @@
 
 .transfer-header {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   gap: 1rem;
-
-  margin-bottom: 2rem;
 }
 
 .transfer-header h2 {
   margin: 0;
-
   font-weight: 700;
-
   color: #1e293b;
 }
 
 .transfer-header p {
   margin: 0.4rem 0 0;
-
   color: #64748b;
 }
 
 .header-actions {
   display: flex;
-
   align-items: center;
-
   gap: 1rem;
-
   flex-wrap: wrap;
 }
+
+/* ===========================
+   Balance Card
+=========================== */
 
 .balance-box {
   background: white;
 
-  border-radius: 16px;
+  border-radius: 18px;
 
-  padding: 0.9rem 1.25rem;
+  padding: 1rem 1.5rem;
 
   box-shadow:
     0 4px 20px rgba(15, 23, 42, 0.05);
 
   display: flex;
-
   flex-direction: column;
 }
 
 .balance-box span {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 
   text-transform: uppercase;
 
@@ -69,11 +61,13 @@
 }
 
 .balance-box strong {
-  font-size: 1.25rem;
+  margin-top: 0.2rem;
 
-  color: #16a34a;
+  font-size: 1.4rem;
 
   font-weight: 700;
+
+  color: #16a34a;
 }
 
 /* ===========================
@@ -102,7 +96,7 @@
 }
 
 /* ===========================
-   Form
+   Forms
 =========================== */
 
 .form-label {
@@ -219,6 +213,13 @@
   font-weight: 600;
 
   padding: 0.75rem 1.4rem;
+
+  transition: all 0.2s ease;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-primary:hover {
+  transform: translateY(-1px);
 }
 
 .btn:disabled {
@@ -226,7 +227,7 @@
 }
 
 /* ===========================
-   Review Step
+   Review Screen
 =========================== */
 
 .review-grid {
@@ -235,8 +236,6 @@
   grid-template-columns: 180px 1fr;
 
   gap: 1rem 2rem;
-
-  margin-top: 1rem;
 }
 
 .review-grid span {
@@ -252,45 +251,121 @@
 }
 
 /* ===========================
-   Success State
+   Success Screen
 =========================== */
 
 .success-card {
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+.success-card .card-body {
+  padding: 3rem 2rem;
+
   text-align: center;
 }
 
-.success-card h4 {
-  color: #15803d;
+.success-icon {
+  width: 100px;
 
-  font-weight: 700;
+  height: 100px;
 
-  margin-bottom: 1rem;
+  margin: 0 auto 2rem;
+
+  border-radius: 50%;
+
+  background:
+    rgba(34, 197, 94, 0.12);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
 }
 
-.success-card p {
+.success-icon i {
+  font-size: 3rem;
+
+  color: #16a34a;
+}
+
+.success-card h3 {
+  font-weight: 700;
+
+  color: #1e293b;
+
+  margin-bottom: 0.75rem;
+}
+
+.success-text {
   color: #64748b;
 
   margin-bottom: 2rem;
+
+  font-size: 1rem;
 }
 
-.reference-box {
-  display: inline-block;
+.receipt-box {
+  max-width: 450px;
+
+  margin: 0 auto;
 
   background: #f8fafc;
 
   border: 1px solid #e2e8f0;
 
-  border-radius: 14px;
+  border-radius: 18px;
 
-  padding: 1rem 1.5rem;
-
-  color: #475569;
+  overflow: hidden;
 }
 
-.reference-box strong {
+.receipt-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 1rem 1.25rem;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.receipt-row:last-child {
+  border-bottom: none;
+}
+
+.receipt-row span {
+  color: #64748b;
+
+  font-weight: 500;
+}
+
+.receipt-row strong {
   color: #1e293b;
 
-  margin-left: 0.5rem;
+  font-weight: 700;
+
+  text-align: right;
+
+  word-break: break-word;
+}
+
+.success-status {
+  color: #15803d !important;
+}
+
+.success-card .btn-primary {
+  min-width: 180px;
 }
 
 /* ===========================
@@ -301,13 +376,11 @@
 
   .transfer-header {
     flex-direction: column;
-
     align-items: stretch;
   }
 
   .header-actions {
     flex-direction: column;
-
     align-items: stretch;
   }
 
@@ -325,6 +398,32 @@
 
   .review-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .success-card .card-body {
+    padding: 2rem 1.25rem;
+  }
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .success-icon i {
+    font-size: 2.5rem;
+  }
+
+  .receipt-row {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0.4rem;
   }
 
 }

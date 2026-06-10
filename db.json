@@ -20,7 +20,7 @@
       "id": "1",
       "userId": 2,
       "accountNumber": "1234567890",
-      "balance": 28500,
+      "balance": 28000,
       "accountType": "Savings"
     }
   ],
@@ -198,6 +198,17 @@
       "date": "2026-06-10",
       "description": "Expense",
       "referenceNumber": "TRF1781081661478"
+    },
+    {
+      "id": "nFokg5vPuuo",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 500,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "Daily change",
+      "referenceNumber": "TRF1781083593476"
     }
   ],
   "beneficiaries": [
