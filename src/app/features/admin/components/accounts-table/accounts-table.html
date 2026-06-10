@@ -1,0 +1,59 @@
+<div class="card">
+
+  <div class="card-body">
+
+    <h5>
+      Accounts
+    </h5>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+
+        <thead>
+
+            <tr>
+
+            <th>Account Number</th>
+
+            <th>Type</th>
+
+            <th>Balance</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(
+            account of admin.accounts();
+            track account.id
+            ){
+
+            <tr>
+
+                <td>
+                {{ account.accountNumber }}
+                </td>
+
+                <td>
+                {{ account.accountType }}
+                </td>
+
+                <td>
+                ₹{{ account.balance }}
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+        </table>
+    </div>
+    
+
+  </div>
+
+</div>

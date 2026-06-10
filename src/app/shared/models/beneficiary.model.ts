@@ -1,5 +1,5 @@
 export interface Beneficiary {
-  id: number;
+  id: string | number;
   userId: number;
   name: string;
   accountNumber: string;
