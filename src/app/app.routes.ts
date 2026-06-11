@@ -13,6 +13,7 @@ import { FinancePage } from './features/finance-insights/pages/finance-page/fina
 import { TransferPage } from './features/transfers/pages/transfer-page/transfer-page';
 
 import { BeneficiaryPage } from './features/beneficiaries/pages/beneficiary-page/beneficiary-page';
+import { NotificationPage } from './features/notifications/pages/notification-page/notification-page';
 
 export const routes: Routes = [
 
@@ -68,7 +69,10 @@ export const routes: Routes = [
       path: 'beneficiaries',
       component: BeneficiaryPage
     },
-
+{
+  path: 'notifications',
+  component: NotificationPage
+}
   ]
 }
 

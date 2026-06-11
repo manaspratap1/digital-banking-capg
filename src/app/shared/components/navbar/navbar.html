@@ -108,6 +108,26 @@
           </a>
 
         }
+        <a
+  class="nav-link notification-link"
+  routerLink="/notifications"
+  routerLinkActive="active-link">
+
+  <i class="bi bi-bell-fill me-2"></i>
+
+  Notifications
+
+  @if(notificationCount() > 0){
+
+    <span class="notification-badge">
+
+      {{ notificationCount() }}
+
+    </span>
+
+  }
+
+</a>
 
         @if(authService.getRole() === 'admin') {
 
@@ -125,6 +145,8 @@
         }
 
       </div>
+
+   
 
       <div class="user-section">
 

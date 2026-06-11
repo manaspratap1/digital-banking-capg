@@ -1,1 +1,192 @@
-<p>notification-page works!</p>
+<div class="container py-4">
+
+  <!-- ════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════ -->
+  <div class="page-header d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+    <div>
+      <h2 class="mb-1">Notifications</h2>
+      <p class="header-subtitle mb-0">
+        You have {{ unreadCount() }} unread notification{{ unreadCount() === 1 ? '' : 's' }}
+        out of {{ totalCount() }} total.
+      </p>
+    </div>
+
+    <button
+      class="btn mark-all-btn"
+      type="button"
+      [disabled]="unreadCount() === 0"
+      (click)="markAllRead()">
+      <i class="bi bi-check2-all me-2"></i>
+      Mark all as read
+    </button>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SUMMARY CARDS
+  ════════════════════════════════════════ -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-6 col-xl-3">
+      <div class="summary-card">
+        <div class="summary-icon icon-total">
+          <i class="bi bi-bell-fill"></i>
+        </div>
+        <div>
+          <h6>Total Notifications</h6>
+          <h3>{{ totalCount() }}</h3>
+          <small>All activity</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+      <div class="summary-card">
+        <div class="summary-icon icon-unread">
+          <i class="bi bi-envelope-exclamation-fill"></i>
+        </div>
+        <div>
+          <h6>Unread</h6>
+          <h3>{{ unreadCount() }}</h3>
+          <small>Needs attention</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+      <div class="summary-card">
+        <div class="summary-icon icon-transactions">
+          <i class="bi bi-arrow-left-right"></i>
+        </div>
+        <div>
+          <h6>Transaction Alerts</h6>
+          <h3>{{ transactionAlertsCount() }}</h3>
+          <small>Credits &amp; debits</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+      <div class="summary-card">
+        <div class="summary-icon icon-bills">
+          <i class="bi bi-receipt-cutoff"></i>
+        </div>
+        <div>
+          <h6>Bill Reminders</h6>
+          <h3>{{ billRemindersCount() }}</h3>
+          <small>Due &amp; paid</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════
+       FILTER TABS
+  ════════════════════════════════════════ -->
+  <div class="filter-tabs mb-4">
+    <button
+      class="filter-tab"
+      [class.active]="activeFilter() === 'all'"
+      (click)="setFilter('all')"
+      type="button">
+      All
+      <span class="tab-count">{{ totalCount() }}</span>
+    </button>
+
+    <button
+      class="filter-tab"
+      [class.active]="activeFilter() === 'unread'"
+      (click)="setFilter('unread')"
+      type="button">
+      Unread
+      <span class="tab-count" *ngIf="unreadCount() > 0">{{ unreadCount() }}</span>
+    </button>
+
+    <button
+      class="filter-tab"
+      [class.active]="activeFilter() === 'transactions'"
+      (click)="setFilter('transactions')"
+      type="button">
+      Transactions
+      <span class="tab-count">{{ transactionAlertsCount() }}</span>
+    </button>
+
+    <button
+      class="filter-tab"
+      [class.active]="activeFilter() === 'bills'"
+      (click)="setFilter('bills')"
+      type="button">
+      Bills
+      <span class="tab-count">{{ billRemindersCount() }}</span>
+    </button>
+
+    <button
+      class="filter-tab"
+      [class.active]="activeFilter() === 'savings'"
+      (click)="setFilter('savings')"
+      type="button">
+      Savings
+      <span class="tab-count">{{ savingsCount() }}</span>
+    </button>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       NOTIFICATION LIST
+  ════════════════════════════════════════ -->
+
+  <!-- Loading state -->
+  <div class="state-card" *ngIf="isLoading()">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3 mb-0">Loading notifications…</p>
+  </div>
+
+  <!-- Empty state -->
+  <div class="state-card" *ngIf="!isLoading() && filteredNotifications().length === 0">
+    <i class="bi bi-bell-slash"></i>
+    <h5 class="mt-3 mb-1">No notifications</h5>
+    <p class="mb-0">
+      {{ activeFilter() === 'unread' ? "You're all caught up!" : 'Nothing to show in this category yet.' }}
+    </p>
+  </div>
+
+  <!-- List -->
+  <div class="notification-list" *ngIf="!isLoading() && filteredNotifications().length > 0">
+    <div
+      class="notification-card"
+      *ngFor="let notif of filteredNotifications(); trackBy: trackById"
+      [class.unread]="!notif.isRead"
+      (click)="markAsRead(notif.id)">
+
+      <div class="notif-icon" [ngClass]="'icon-' + notif.category">
+        <i class="bi" [ngClass]="notif.icon"></i>
+      </div>
+
+      <div class="notif-content">
+        <div class="notif-top">
+          <h6 class="notif-title">
+            {{ notif.title }}
+            <span class="unread-dot" *ngIf="!notif.isRead"></span>
+          </h6>
+          <span class="notif-date">{{ notif.date | date:'d MMM, y' }}</span>
+        </div>
+        <p class="notif-message">{{ notif.message }}</p>
+        <span class="category-badge" [ngClass]="'badge-' + notif.category">
+          {{ notif.category | titlecase }}
+        </span>
+      </div>
+
+      <button
+        class="delete-btn"
+        type="button"
+        title="Delete notification"
+        (click)="deleteNotification(notif.id, $event)">
+        <i class="bi bi-trash"></i>
+      </button>
+
+    </div>
+  </div>
+
+</div>
