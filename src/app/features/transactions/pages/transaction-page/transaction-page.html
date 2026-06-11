@@ -1,1 +1,120 @@
-<h1>transaction-page works!</h1>
+<div class="container transaction-page py-4">
+
+  <div class="page-hero">
+
+    <div class="hero-copy">
+
+      <span class="eyebrow">
+        Customer Banking
+      </span>
+
+      <h2>
+        Transaction Management
+      </h2>
+
+      <p>
+        Review your complete account activity, inspect transaction details,
+        and generate monthly statements from one place.
+      </p>
+
+    </div>
+
+    <button
+      class="btn statement-btn"
+      type="button"
+      [disabled]="loading() || allTransactions().length === 0"
+      (click)="openStatementView()">
+
+      View Monthly Statement
+
+    </button>
+
+  </div>
+
+  <div class="row g-3 summary-row">
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+        <span>Total Transactions</span>
+        <strong>{{ summary().totalTransactions }}</strong>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+        <span>Total Credits</span>
+        <strong class="credit-text">
+          {{ summary().credits | currency:'INR':'symbol':'1.0-0' }}
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+        <span>Total Debits</span>
+        <strong class="debit-text">
+          {{ summary().debits | currency:'INR':'symbol':'1.0-0' }}
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+
+      <div class="summary-card">
+        <span>Net Change</span>
+        <strong
+          [class.credit-text]="summary().netChange >= 0"
+          [class.debit-text]="summary().netChange < 0">
+
+          {{ summary().netChange | currency:'INR':'symbol':'1.0-0' }}
+
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="mt-4">
+
+    <app-transaction-filter
+      [searchTerm]="searchTerm()"
+      [categoryFilter]="categoryFilter()"
+      [categories]="categoryOptions()"
+      (searchTermChange)="updateSearchTerm($event)"
+      (categoryFilterChange)="updateCategoryFilter($event)"
+      (clearFilters)="resetFilters()" />
+
+  </div>
+
+  <div class="mt-4">
+
+    <app-transaction-list
+      [transactions]="filteredTransactions()"
+      [loading]="loading()"
+      [error]="error()"
+      (transactionSelect)="openTransactionDetails($event)" />
+
+  </div>
+
+</div>
+
+<app-transaction-details
+  [visible]="selectedTransaction() !== null"
+  [transaction]="selectedTransaction()"
+  (close)="closeTransactionDetails()" />
+
+<app-statement-view
+  [visible]="statementVisible()"
+  [transactions]="allTransactions()"
+  [selectedMonth]="statementMonth()"
+  [accountNumber]="statementAccountNumber()"
+  [currentBalance]="statementCurrentBalance()"
+  (selectedMonthChange)="updateStatementMonth($event)"
+  (close)="closeStatementView()" />

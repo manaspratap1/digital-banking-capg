@@ -1,0 +1,75 @@
+.filter-card {
+  border: none;
+  border-radius: 20px;
+  padding: 1.75rem;
+  background: white;
+  box-shadow:
+    0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-header h5 {
+  margin: 0;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.filter-header p {
+  margin: 0.4rem 0 0;
+  color: #64748b;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 12px;
+  border: 1px solid #dbe2ea;
+  padding: 0.8rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3b82f6;
+  box-shadow:
+    0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+.btn-outline-secondary {
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+}
+
+@media (max-width: 768px) {
+
+  .filter-card {
+    padding: 1.4rem;
+  }
+
+  .filter-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-header .btn {
+    width: 100%;
+  }
+
+}

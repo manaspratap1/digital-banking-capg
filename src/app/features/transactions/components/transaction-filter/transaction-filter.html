@@ -1,0 +1,70 @@
+<div class="filter-card">
+
+  <div class="filter-header">
+
+    <div>
+
+      <h5>
+        Transaction Filters
+      </h5>
+
+      <p>
+        Search by description, category, or reference number.
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="clear()">
+
+      Clear Filters
+
+    </button>
+
+  </div>
+
+  <div class="row g-3">
+
+    <div class="col-lg-8">
+
+      <label class="form-label">
+        Search
+      </label>
+
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search transactions"
+        [value]="searchTerm"
+        (input)="onSearch($event)">
+
+    </div>
+
+    <div class="col-lg-4">
+
+      <label class="form-label">
+        Category
+      </label>
+
+      <select
+        class="form-select"
+        [value]="categoryFilter"
+        (change)="onCategoryChange($event)">
+
+        @for (category of categories; track category) {
+
+          <option [value]="category">
+            {{ category }}
+          </option>
+
+        }
+
+      </select>
+
+    </div>
+
+  </div>
+
+</div>

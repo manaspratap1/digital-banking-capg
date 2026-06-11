@@ -1,0 +1,218 @@
+@if (visible) {
+
+  <div
+    class="statement-backdrop"
+    (click)="closeModal()">
+
+    <div
+      class="statement-modal"
+      (click)="stopPropagation($event)">
+
+      <div class="statement-header">
+
+        <div class="header-copy">
+
+          <span class="statement-label">
+            Monthly Statement
+          </span>
+
+          <h4>
+            {{ statement()?.monthLabel ?? 'Statement' }}
+          </h4>
+
+          <p>
+            Account: {{ accountNumber }}
+          </p>
+
+        </div>
+
+        <div class="header-actions">
+
+          <div class="month-picker">
+
+            <label class="form-label">
+              Selected Month
+            </label>
+
+            <select
+              class="form-select"
+              [value]="currentMonth()"
+              [disabled]="statementMonths().length === 0"
+              (change)="onMonthChange($event)">
+
+              @for (month of statementMonths(); track month.value) {
+
+                <option [value]="month.value">
+                  {{ month.label }}
+                </option>
+
+              }
+
+            </select>
+
+          </div>
+
+          <button
+            class="btn-close"
+            type="button"
+            (click)="closeModal()">
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="statement-body">
+
+        @if (statement(); as currentStatement) {
+
+          <div class="row g-3 summary-row">
+
+            <div class="col-md-6 col-xl-3">
+              <div class="summary-box">
+                <span>Opening Balance</span>
+                <strong>{{ currentStatement.openingBalance | currency:'INR':'symbol':'1.0-0' }}</strong>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+              <div class="summary-box">
+                <span>Total Credits</span>
+                <strong class="credit-text">{{ currentStatement.totalCredits | currency:'INR':'symbol':'1.0-0' }}</strong>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-xl-2">
+              <div class="summary-box">
+                <span>Total Debits</span>
+                <strong class="debit-text">{{ currentStatement.totalDebits | currency:'INR':'symbol':'1.0-0' }}</strong>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-xl-2">
+              <div class="summary-box">
+                <span>Current Balance</span>
+                <strong>{{ currentStatement.currentBalance | currency:'INR':'symbol':'1.0-0' }}</strong>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="table-card">
+
+            <div class="table-card-header">
+
+              <div>
+                <h5>
+                  Statement Transactions
+                </h5>
+                <p>
+                  Review all transactions included in this statement period.
+                </p>
+              </div>
+
+              <span class="count-badge">
+                {{ currentStatement.transactions.length }} Entries
+              </span>
+
+            </div>
+
+            @if (currentStatement.transactions.length === 0) {
+
+              <div class="empty-statement">
+                No transactions are available for this statement month.
+              </div>
+
+            } @else {
+
+              <div class="transaction-table-wrap">
+
+                <table class="table align-middle mb-0">
+
+                  <thead>
+
+                    <tr>
+
+                      <th>Date</th>
+
+                      <th>Description</th>
+
+                      <th>Category</th>
+
+                      <th>Reference</th>
+
+                      <th>Type</th>
+
+                      <th class="text-end">Amount</th>
+
+                    </tr>
+
+                  </thead>
+
+                  <tbody>
+
+                    @for (transaction of currentStatement.transactions; track transaction.id) {
+
+                      <tr>
+
+                        <td>{{ transaction.date | date:'dd MMM yyyy' }}</td>
+
+                        <td>{{ transaction.description }}</td>
+
+                        <td>{{ transaction.category }}</td>
+
+                        <td>{{ transaction.referenceNumber }}</td>
+
+                        <td>
+                          <span
+                            class="type-badge"
+                            [class.credit-badge]="transaction.type === transactionType.CREDIT"
+                            [class.debit-badge]="transaction.type === transactionType.DEBIT">
+
+                            {{ transaction.type }}
+
+                          </span>
+                        </td>
+
+                        <td
+                          class="text-end amount-cell"
+                          [class.credit-text]="transaction.type === transactionType.CREDIT"
+                          [class.debit-text]="transaction.type === transactionType.DEBIT">
+
+                          @if (transaction.type === transactionType.CREDIT) {
+                            +{{ transaction.amount | currency:'INR':'symbol':'1.0-0' }}
+                          } @else {
+                            -{{ transaction.amount | currency:'INR':'symbol':'1.0-0' }}
+                          }
+
+                        </td>
+
+                      </tr>
+
+                    }
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            }
+
+          </div>
+
+        } @else {
+
+          <div class="empty-statement">
+            No statement data is available yet.
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
