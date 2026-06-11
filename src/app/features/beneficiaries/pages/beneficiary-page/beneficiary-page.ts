@@ -56,10 +56,17 @@ export class BeneficiaryPage implements OnInit {
     this.isLoading.set(true);
 
     this.api
-      .get<Beneficiary[]>(`beneficiaries?userId=${this.getUserId()}`)
+      .get<Beneficiary[]>('beneficiaries')
       .subscribe({
         next: beneficiaries => {
-          this.beneficiaries.set(beneficiaries);
+          const currentUserId = String(this.getUserId());
+
+          this.beneficiaries.set(
+            beneficiaries.filter(
+              beneficiary =>
+                String(beneficiary.userId) === String(currentUserId)
+            )
+          );
           this.isLoading.set(false);
         },
         error: () => {
@@ -81,7 +88,7 @@ export class BeneficiaryPage implements OnInit {
     const formValue = this.beneficiaryForm.getRawValue();
 
     const beneficiary: Beneficiary = {
-      id: Date.now(),
+      id: String(Date.now()),
       userId: this.getUserId(),
       name: String(formValue.name),
       bankName: String(formValue.bankName),
@@ -131,8 +138,8 @@ export class BeneficiaryPage implements OnInit {
     return 'Invalid value.';
   }
 
-  private getUserId(): number {
-    return Number(this.authService.currentUser().userId || 2);
+  private getUserId(): string {
+    return String(this.authService.currentUser().userId ?? 2);
   }
 
   private accountNumberMatchValidator(): ValidatorFn {
@@ -159,7 +166,8 @@ export class BeneficiaryPage implements OnInit {
       }
 
       const exists = this.beneficiaries().some(
-        beneficiary => beneficiary.accountNumber === accountNumber
+        beneficiary =>
+          String(beneficiary.accountNumber) === String(accountNumber)
       );
 
       return exists ? { duplicateBeneficiary: true } : null;

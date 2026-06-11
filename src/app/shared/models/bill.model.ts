@@ -2,7 +2,7 @@ import { BillStatus } from '../enums/bill-status.enum';
 
 export interface Bill {
   id: string | number;
-  userId: number;
+  userId: string | number;
 
   billerName: string;
 

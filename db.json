@@ -13,6 +13,27 @@
       "email": "user@gmail.com",
       "password": "user123",
       "role": "customer"
+    },
+    {
+      "name": "Om Arora",
+      "email": "om@gmail.com",
+      "password": "user123",
+      "role": "customer",
+      "id": "BeCmnmoDaME"
+    },
+    {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "password": "user123",
+      "role": "customer",
+      "id": "dx3ocnYRfTQ"
+    },
+    {
+      "name": "Test2",
+      "email": "test2@gmail.com",
+      "password": "user123",
+      "role": "customer",
+      "id": "lHbtzA6n6Jo"
     }
   ],
   "accounts": [
@@ -21,6 +42,27 @@
       "userId": 2,
       "accountNumber": "1234567890",
       "balance": 27000,
+      "accountType": "Savings"
+    },
+    {
+      "id": "frD7LCOTJi8",
+      "userId": "BeCmnmoDaME",
+      "accountNumber": "ACC1781196315173",
+      "balance": 45000,
+      "accountType": "Savings"
+    },
+    {
+      "id": "yK6r8hIhTKo",
+      "userId": "dx3ocnYRfTQ",
+      "accountNumber": "ACC1781201115413",
+      "balance": 25000,
+      "accountType": "Savings"
+    },
+    {
+      "id": "NBcoMD_i_L0",
+      "userId": "lHbtzA6n6Jo",
+      "accountNumber": "ACC1781201890520",
+      "balance": 0,
       "accountType": "Savings"
     }
   ],
@@ -177,6 +219,67 @@
       "date": "2026-06-11",
       "description": "dalali",
       "referenceNumber": "TRF1781075090812"
+    },
+    {
+      "id": "7H8JN81pPwk",
+      "accountId": "frD7LCOTJi8",
+      "amount": 70000,
+      "type": "credit",
+      "category": "Salary",
+      "date": "2026-06-11T17:22:56.695Z",
+      "description": "Salary Credit",
+      "referenceNumber": "SAL1781198576695"
+    },
+    {
+      "id": "rvtFb7SH4Tw",
+      "accountId": "frD7LCOTJi8",
+      "amount": 5000,
+      "type": "debit",
+      "category": "Test",
+      "date": "2026-06-11",
+      "description": "Om ka bill bill payment",
+      "referenceNumber": "BILL1781200270926"
+    },
+    {
+      "id": "p4K6H2gW96Q",
+      "accountId": "frD7LCOTJi8",
+      "beneficiaryId": "Ng6lpMT2wIQ",
+      "amount": 20000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-11",
+      "description": "Salary",
+      "referenceNumber": "TRF1781200364260"
+    },
+    {
+      "id": "kpt7bnzJAOc",
+      "accountId": "yK6r8hIhTKo",
+      "amount": 20000,
+      "type": "credit",
+      "category": "Salary",
+      "date": "2026-06-11T18:06:03.911Z",
+      "description": "Salary Credit",
+      "referenceNumber": "SAL1781201163911"
+    },
+    {
+      "id": "7Sxu4KIYsgk",
+      "accountId": "yK6r8hIhTKo",
+      "amount": 15000,
+      "type": "debit",
+      "category": "Bill",
+      "date": "2026-06-11",
+      "description": "Electric bill payment",
+      "referenceNumber": "BILL1781201244800"
+    },
+    {
+      "id": "NH-TXZDhloQ",
+      "accountId": "yK6r8hIhTKo",
+      "amount": 20000,
+      "type": "credit",
+      "category": "Salary",
+      "date": "2026-06-11T18:13:37.978Z",
+      "description": "Salary Credit",
+      "referenceNumber": "SAL1781201617978"
     }
   ],
   "beneficiaries": [
@@ -186,6 +289,13 @@
       "name": "Saurabh Gupta",
       "bankName": "Bank Of Baroda",
       "accountNumber": "11223344556677"
+    },
+    {
+      "id": "Ng6lpMT2wIQ",
+      "userId": "BeCmnmoDaME",
+      "name": "Manas",
+      "bankName": "SBI",
+      "accountNumber": "1122334455"
     }
   ],
   "bills": [
@@ -214,6 +324,24 @@
       "dueDate": "2026-06-18",
       "id": "kSYvFmwDkls",
       "userId": 2,
+      "status": "paid"
+    },
+    {
+      "billerName": "Om ka bill",
+      "category": "Test",
+      "amount": 5000,
+      "dueDate": "2026-06-13",
+      "id": "b3KEPN6Jyxc",
+      "userId": "BeCmnmoDaME",
+      "status": "paid"
+    },
+    {
+      "billerName": "Electric",
+      "category": "Bill",
+      "amount": 15000,
+      "dueDate": "2026-06-12",
+      "id": "KUADN9Iad5M",
+      "userId": "dx3ocnYRfTQ",
       "status": "paid"
     }
   ],
@@ -267,6 +395,20 @@
       "title": "Investment Corpus",
       "targetAmount": 1000000,
       "currentAmount": 180000
+    },
+    {
+      "id": "IY4SZpbdlU4",
+      "userId": "BeCmnmoDaME",
+      "title": "Hyper Bike ",
+      "targetAmount": 150000,
+      "currentAmount": 20000
+    },
+    {
+      "id": "FeZD3fYbJ5c",
+      "userId": "dx3ocnYRfTQ",
+      "title": "Funds",
+      "targetAmount": 20000,
+      "currentAmount": 100
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

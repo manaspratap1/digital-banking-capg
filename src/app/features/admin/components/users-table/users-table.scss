@@ -132,6 +132,118 @@ tbody tr:hover {
   transform: translateY(-1px);
 }
 
+.btn-success {
+  border: none;
+
+  border-radius: 10px;
+
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+
+  font-weight: 600;
+
+  padding: 0.45rem 0.9rem;
+
+  transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+  background: linear-gradient(90deg, #15803d, #16a34a);
+
+  transform: translateY(-1px);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.salary-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.salary-modal {
+  width: min(560px, 100%);
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+}
+
+.salary-modal-header {
+  background: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-label {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.salary-modal-header h4 {
+  margin: 0;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.salary-modal-body {
+  padding: 2rem;
+}
+
+.salary-modal .form-control {
+  border-radius: 12px;
+  border: 1px solid #dbe2ea;
+  padding: 0.75rem 1rem;
+}
+
+.salary-modal .form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+.salary-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.salary-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  border-radius: 14px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.salary-success i {
+  font-size: 1.5rem;
+  color: #22c55e;
+}
+
 @media (max-width: 768px) {
 
   .users-header {

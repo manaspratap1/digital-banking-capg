@@ -40,21 +40,10 @@ export class DashboardService {
     this.isLoading.set(true);
 
     return forkJoin([
-      this.http.get<Account[]>(
-        `${this.baseUrl}/accounts?userId=${userId}`
-      ),
-
-      this.http.get<Transaction[]>(
-        `${this.baseUrl}/transactions`
-      ),
-
-      this.http.get<Notification[]>(
-        `${this.baseUrl}/notifications?userId=${userId}`
-      ),
-
-      this.http.get<SavingsGoal[]>(
-        `${this.baseUrl}/savingsGoals?userId=${userId}`
-      )
+      this.http.get<Account[]>(`${this.baseUrl}/accounts`),
+      this.http.get<Transaction[]>(`${this.baseUrl}/transactions`),
+      this.http.get<Notification[]>(`${this.baseUrl}/notifications`),
+      this.http.get<SavingsGoal[]>(`${this.baseUrl}/savingsGoals`)
 
     ]).pipe(
 
@@ -65,10 +54,32 @@ export class DashboardService {
         console.log('Notifications:', notifications);
         console.log('Goals:', goals);
 
-        this.accounts.set(accounts);
-        this.recentTransactions.set(transactions.slice(0,5));
-        this.notifications.set(notifications);
-        this.savingsGoals.set(goals);
+        const userAccounts = accounts.filter(
+          account =>
+            String(account.userId) === String(userId)
+        );
+        const userAccountIds = userAccounts.map(account => String(account.id));
+
+        this.accounts.set(userAccounts);
+        this.recentTransactions.set(
+          transactions
+            .filter(transaction =>
+              userAccountIds.includes(String(transaction.accountId))
+            )
+            .slice(0, 5)
+        );
+        this.notifications.set(
+          notifications.filter(
+            notification =>
+              String(notification.userId) === String(userId)
+          )
+        );
+        this.savingsGoals.set(
+          goals.filter(
+            goal =>
+              String(goal.userId) === String(userId)
+          )
+        );
 
         this.isLoading.set(false);
       }),

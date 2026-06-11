@@ -23,6 +23,16 @@ h3 {
   color: #1e293b;
 }
 
+label {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
 .form-control {
   border-radius: 12px;
 
@@ -49,20 +59,4 @@ h3 {
 
 .btn-primary:hover {
   background: #1d4ed8;
-}
-
-p {
-  color: #64748b;
-}
-
-a {
-  color: #2563eb;
-
-  font-weight: 600;
-
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }

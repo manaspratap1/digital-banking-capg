@@ -115,16 +115,26 @@ export class TransferPage implements OnInit {
     this.isLoading.set(true);
 
     forkJoin({
-      accounts: this.api.get<Account[]>(`accounts?userId=${userId}`),
-      beneficiaries: this.api.get<Beneficiary[]>(`beneficiaries?userId=${userId}`),
+      accounts: this.api.get<Account[]>('accounts'),
+      beneficiaries: this.api.get<Beneficiary[]>('beneficiaries'),
     }).subscribe({
       next: ({ accounts, beneficiaries }) => {
-        this.accounts.set(accounts);
-        this.beneficiaries.set(beneficiaries);
+        this.accounts.set(
+          accounts.filter(
+            account =>
+              String(account.userId) === String(userId)
+          )
+        );
+        this.beneficiaries.set(
+          beneficiaries.filter(
+            beneficiary =>
+              String(beneficiary.userId) === String(userId)
+          )
+        );
 
-        if (accounts.length) {
+        if (this.accounts().length) {
           this.transferForm.patchValue({
-            fromAccountId: String(accounts[0].id),
+            fromAccountId: String(this.accounts()[0].id),
           });
         }
 
@@ -162,10 +172,10 @@ export class TransferPage implements OnInit {
     const referenceNumber = this.generateReferenceNumber();
 
     const transaction: Transaction = {
-      id: Date.now(),
-      accountId: Number(account.id),
+      id: String(Date.now()),
+      accountId: String(account.id),
       beneficiaryId: this.transferForm.value.beneficiaryId
-        ? Number(this.transferForm.value.beneficiaryId)
+        ? String(this.transferForm.value.beneficiaryId)
         : undefined,
       amount,
       type: TransactionType.DEBIT,
@@ -238,8 +248,8 @@ export class TransferPage implements OnInit {
     return 'Invalid value.';
   }
 
-  private getUserId(): number {
-    return Number(this.authService.currentUser().userId || 2);
+  private getUserId(): string {
+    return String(this.authService.currentUser().userId ?? 2);
   }
 
   private generateReferenceNumber(): string {

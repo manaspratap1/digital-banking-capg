@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 
 import { Finance } from '../../services/finance';
 
@@ -9,7 +9,7 @@ import { Finance } from '../../services/finance';
   styleUrl: './savings-goal-card.scss',
 })
 export class SavingsGoalCard {
-
   finance = inject(Finance);
 
+  @Output() addGoal = new EventEmitter<void>();
 }

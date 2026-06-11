@@ -2,49 +2,74 @@
 
   <div class="card-body">
 
-    <h5 class="mb-3">
-      Savings Goals
-    </h5>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+      <h5 class="mb-0">
+        Savings Goals
+      </h5>
+
+      <button
+        class="btn btn-primary btn-sm"
+        type="button"
+        (click)="addGoal.emit()">
+
+        Add Goal
+
+      </button>
+
+    </div>
 
     <div class="goals-container">
 
-  @for( goal of finance.savingsGoals(); track goal.id){
+      @if(finance.savingsGoals().length === 0) {
 
-        <div class="mb-4">
+        <div class="empty-goals">
 
-        <div
-            class="d-flex justify-content-between">
+          <h6>
+            No savings goals yet
+          </h6>
 
-            <span>
-            {{ goal.title }}
-            </span>
-
-            <span>
-
-            ₹{{ goal.currentAmount }}
-            /
-            ₹{{ goal.targetAmount }}
-
-            </span>
+          <p>
+            Add your first goal to start tracking progress.
+          </p>
 
         </div>
 
-        <div class="progress mt-2">
+      } @else {
 
-            <div
-            class="progress-bar"
-            [style.width.%]="
-                (goal.currentAmount /
-                goal.targetAmount) * 100
-            ">
+        @for(goal of finance.savingsGoals(); track goal.id) {
+
+          <div class="mb-4 goal-item">
+
+            <div class="d-flex justify-content-between">
+
+              <span>
+                {{ goal.title }}
+              </span>
+
+              <span>
+                ₹{{ goal.currentAmount }}
+                /
+                ₹{{ goal.targetAmount }}
+              </span>
 
             </div>
 
-        </div>
+            <div class="progress mt-2">
 
-        </div>
+              <div
+                class="progress-bar"
+                [style.width.%]="goal.targetAmount > 0 ? (goal.currentAmount / goal.targetAmount) * 100 : 0">
 
-    }
+              </div>
+
+            </div>
+
+          </div>
+
+        }
+
+      }
 
     </div>
 

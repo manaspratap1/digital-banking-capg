@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 
@@ -17,6 +17,9 @@ import { AUTH_STORAGE_KEY } from '../constants/auth.constant';
 import { loginSuccess, logout as logoutAction } from '../store/auth/auth.actions';
 
 import { selectAuthState } from '../store/auth/auth.selectors';
+import { ApiService } from './api.service';
+import { Role } from '../../shared/enums/role.enum';
+import { Account } from '../../shared/models';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +29,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private store = inject(Store);
+  private api = inject(ApiService);
 
   private currentState: AuthState = {
     isLoggedIn: false,
@@ -136,5 +140,49 @@ export class AuthService {
     return this.currentState;
 
   }
+
+  register( name: string, email: string, password: string) {
+
+    const userPayload = {
+        name,
+        email,
+        password,
+        role: Role.CUSTOMER
+      };
+
+      return this.api
+        .create(
+          'users',
+          userPayload
+        )
+        .pipe(
+
+          switchMap((user: any) => {
+
+            const account: Account = {
+
+              id: Date.now(),
+
+              userId: user.id,
+
+              accountNumber:
+                `ACC${Date.now()}`,
+
+              balance: 0,
+
+              accountType: 'Savings'
+
+            };
+
+            return this.api.create(
+              'accounts',
+              account
+            );
+
+          })
+
+        );
+
+    }
 
 }

@@ -2,8 +2,8 @@ import { TransactionType } from "../enums/transaction-type.enum";
 
 export interface Transaction {
   id: string | number;
-  accountId: number;
-  beneficiaryId?: number;
+  accountId: number | string;
+  beneficiaryId?: string | number;
 
   amount: number;
   type: TransactionType;

@@ -4,9 +4,11 @@ import {
   Injectable,
   signal
 } from '@angular/core';
+import { map, Observable, of, switchMap } from 'rxjs';
 
 import { Account, Transaction, User } from '../../../shared/models';
 import { ApiService } from '../../../core/services/api.service';
+import { TransactionType } from '../../../shared/enums/transaction-type.enum';
 
 
 
@@ -145,5 +147,57 @@ export class Admin {
       );
 
   });
+
+  creditSalary(
+      userId: number | string,
+      amount: number
+    ): Observable<Transaction | null> {
+
+      const account =
+        this.accounts()
+          .find(
+            account =>
+              String(account.userId) === String(userId)
+          );
+
+      if (!account) {
+        return of(null);
+      }
+
+      const updatedAccount = {
+
+        ...account,
+
+        balance:
+          account.balance +
+          amount
+
+      };
+
+      const transaction: Transaction = {
+        id: String(Date.now()),
+        accountId: String(account.id),
+        amount,
+        type: TransactionType.CREDIT,
+        category: 'Salary',
+        date: new Date().toISOString(),
+        description: 'Salary Credit',
+        referenceNumber: `SAL${Date.now()}`
+      };
+
+      return this.api
+        .update('accounts', account.id, updatedAccount)
+        .pipe(
+          switchMap(() =>
+            this.api.create<Transaction>(
+              'transactions',
+              transaction
+            ).pipe(
+              map(() => transaction)
+            )
+          )
+        );
+
+    }
 
 }

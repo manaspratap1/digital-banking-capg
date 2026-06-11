@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BillService } from '../../services/bill';
 import { BillStatus } from '../../../../shared/enums/bill-status.enum';
 import { Bill } from '../../../../shared/models';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-bill-form',
@@ -14,6 +15,7 @@ export class BillForm {
 
   private fb = inject(FormBuilder);
   private billService = inject(BillService);
+  private authService = inject(AuthService);
 
   billForm = this.fb.group({
     billerName: ['', Validators.required],
@@ -32,13 +34,15 @@ export class BillForm {
 
     }
 
+    const currentUserId = String(this.authService.currentUser().userId ?? 2);
+
     const bill = {
 
       ...this.billForm.getRawValue(),
 
-      id: Date.now(),
+      id: String(Date.now()),
 
-      userId: 2,
+      userId: currentUserId,
 
       status: BillStatus.PENDING
 

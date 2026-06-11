@@ -1,7 +1,9 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { SavingsGoal, Transaction } from '../../../shared/models';
+import { Account, SavingsGoal, Transaction } from '../../../shared/models';
 import { TransactionType } from '../../../shared/enums/transaction-type.enum';
 import { ApiService } from '../../../core/services/api.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { map, Observable } from 'rxjs';
 
 
 
@@ -14,6 +16,7 @@ export class Finance {
 
   transactions = signal<Transaction[]>([]);
   savingsGoals = signal<SavingsGoal[]>([]);
+  private authService = inject(AuthService);
 
   totalIncome = computed(() =>
     this.transactions()
@@ -56,29 +59,49 @@ export class Finance {
   });
 
   loadTransactions(): void {
+    this.api.get<Account[]>('accounts')
+      .subscribe(accounts => {
+        const currentUserId = String(this.authService.currentUser().userId ?? 2);
 
-    this.api
-      .get<Transaction[]>('transactions')
-      .subscribe(transactions => {
-
-        this.transactions.set(
-          transactions
+        const account = accounts.find(
+          account =>
+            String(account.userId) === String(currentUserId)
         );
 
-      });
+        if (!account) {
+          return;
+        }
 
+        this.api.get<Transaction[]>('transactions')
+          .subscribe(transactions => {
+            this.transactions.set(
+              transactions.filter(
+                transaction =>
+                  String(transaction.accountId) === String(account.id)
+              )
+            );
+          });
+      });
   }
 
   loadSavingsGoals(): void {
-
-    this.api
-      .get<SavingsGoal[]>('savingsGoals')
+    this.api.get<SavingsGoal[]>('savingsGoals')
       .subscribe(goals => {
+        const currentUserId = String(this.authService.currentUser().userId ?? 2);
 
-        this.savingsGoals.set(goals);
-
+        this.savingsGoals.set(
+          goals.filter(
+            goal =>
+              String(goal.userId) === String(currentUserId)
+          )
+        );
       });
+  }
 
+  addSavingsGoal(goal: SavingsGoal): Observable<SavingsGoal> {
+    return this.api.create<SavingsGoal>('savingsGoals', goal).pipe(
+      map(() => goal)
+    );
   }
 
   getCategorySpending() {

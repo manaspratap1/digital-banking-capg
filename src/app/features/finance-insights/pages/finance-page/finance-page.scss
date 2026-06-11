@@ -1,9 +1,109 @@
-.container {
+.finance-page {
   max-width: 1400px;
+}
+
+.finance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 h2 {
   font-weight: 700;
   color: #1e293b;
-  margin-bottom: 2rem;
+}
+
+.goal-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1050;
+}
+
+.goal-modal {
+  width: min(720px, 100%);
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+}
+
+.goal-modal-header {
+  background: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.goal-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2563eb;
+  margin-bottom: 0.4rem;
+}
+
+.goal-modal-header h4 {
+  margin: 0;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.goal-modal-body {
+  padding: 2rem;
+}
+
+.form-control {
+  border-radius: 12px;
+  border: 1px solid #dbe2ea;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+.goal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.btn-primary {
+  height: 100%;
+  border-radius: 12px;
+  font-weight: 600;
+  background: #2563eb;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-close:focus {
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .finance-header {
+    flex-direction: column;
+  }
+
+  .finance-action-btn {
+    width: 100%;
+  }
 }

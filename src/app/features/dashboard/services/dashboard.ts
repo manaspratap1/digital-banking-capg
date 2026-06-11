@@ -4,6 +4,7 @@ import { Account, Bill, Transaction } from '../../../shared/models';
 import { TransactionType } from '../../../shared/enums/transaction-type.enum';
 import { BillStatus } from '../../../shared/enums/bill-status.enum';
 import { Finance } from '../../finance-insights/services/finance';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,8 @@ export class Dashboard {
 
   private finance = inject(Finance);
 
+  private authService = inject(AuthService);
+
   account = signal<Account | null>(null);
 
   transactions = signal<Transaction[]>([]);
@@ -22,9 +25,7 @@ export class Dashboard {
 
   availableBalance = computed(() => this.account()?.balance ?? 0 );
 
-  monthlyIncome =
-    computed(() =>
-
+  monthlyIncome = computed(() =>
       this.transactions()
         .filter(
           transaction =>
@@ -48,7 +49,7 @@ export class Dashboard {
     upcomingBills = computed(() =>
         this.bills()
           .filter(
-            bill => BillStatus.PENDING
+            bill => bill.status === BillStatus.PENDING
           )
           .slice(0, 5)
       );  
@@ -89,38 +90,50 @@ export class Dashboard {
 
     this.finance.loadSavingsGoals();
 
-    this.api
-      .get<Account[]>('accounts')
+    this.api.get<Account[]>('accounts')
       .subscribe(accounts => {
 
+        const currentUserId = String(this.authService.currentUser().userId ?? 2);
+
+        const account = accounts.find(
+          account =>
+            String(account.userId) === String(currentUserId)
+        );
+
         this.account.set(
-          accounts[0]
+          account ?? null
         );
 
-      });
+      if (!account) {
+        return;
+      }
 
-    this.api
-      .get<Transaction[]>(
-        'transactions'
-      )
-      .subscribe(transactions => {
+      this.api.get<Transaction[]>('transactions')
+        .subscribe(transactions => {
 
-        this.transactions.set(
-          transactions
-        );
+          this.transactions.set(
 
+            transactions.filter(
+              transaction =>
+                String(transaction.accountId) === String(account.id)
+            )
+          );
+        });
       });
 
     this.api
       .get<Bill[]>('bills')
       .subscribe(bills => {
 
+        const currentUserId = String(this.authService.currentUser().userId ?? 2);
+
         this.bills.set(
-          bills
+          bills.filter(
+            bill =>
+              String(bill.userId) === String(currentUserId)
+          )
         );
-
       });
-
   }
 
 }

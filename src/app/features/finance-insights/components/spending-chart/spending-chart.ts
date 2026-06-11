@@ -15,6 +15,10 @@ export class SpendingChart {
 
   pieChartType: ChartType = 'pie';
 
+  hasData(): boolean {
+    return this.finance.getCategorySpending().length > 0;
+  }
+
   get pieChartData():
     ChartConfiguration<'pie'>['data'] {
 

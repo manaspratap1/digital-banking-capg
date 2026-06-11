@@ -20,6 +20,7 @@ import { transactionsFeatureKey } from './features/transactions/store/transactio
 import { BeneficiaryPage } from './features/beneficiaries/pages/beneficiary-page/beneficiary-page';
 import { NotificationPage } from './features/notifications/pages/notification-page/notification-page';
 import { customerGuard } from './core/guards/customer-guard-guard';
+import { RegisterPage } from './features/auth/pages/register-page/register-page';
 
 export const routes: Routes = [
 
@@ -32,6 +33,11 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginPage,
+    canActivate: [guestGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterPage,
     canActivate: [guestGuard]
   },
   

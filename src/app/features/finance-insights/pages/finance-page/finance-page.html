@@ -1,8 +1,20 @@
-<div class="container">
+<div class="container finance-page">
 
-  <h2 class="mb-4">
-    Financial Insights
-  </h2>
+  <div class="finance-header mb-4">
+
+    <div>
+
+      <h2 class="mb-2">
+        Financial Insights
+      </h2>
+
+      <p class="text-muted mb-0">
+        Track spending, progress, and savings goals.
+      </p>
+
+    </div>
+
+  </div>
 
   <app-spending-summary-card />
 
@@ -13,7 +25,8 @@
     </div>
 
     <div class="col-md-4">
-      <app-savings-goal-card />
+      <app-savings-goal-card
+        (addGoal)="openGoalModal()" />
     </div>
 
   </div>
@@ -25,3 +38,134 @@
   </div>
 
 </div>
+
+@if(goalModalOpen()) {
+
+  <div class="goal-modal-backdrop">
+
+    <div class="goal-modal">
+
+      <div class="goal-modal-header">
+
+        <div>
+
+          <span class="goal-label">
+            Savings Goal
+          </span>
+
+          <h4>
+            Add Savings Goal
+          </h4>
+
+        </div>
+
+        <button
+          class="btn-close"
+          type="button"
+          aria-label="Close"
+          (click)="closeGoalModal()">
+        </button>
+
+      </div>
+
+      <div class="goal-modal-body">
+
+        @if(goalSuccessMessage()) {
+
+          <div class="alert alert-success">
+            {{ goalSuccessMessage() }}
+          </div>
+
+        }
+
+        @if(goalErrorMessage()) {
+
+          <div class="alert alert-danger">
+            {{ goalErrorMessage() }}
+          </div>
+
+        }
+
+        <form
+          [formGroup]="goalForm"
+          (ngSubmit)="submitGoal()">
+
+          <div class="mb-3">
+
+            <label class="form-label">
+              Goal Title
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="title"
+              placeholder="e.g. Emergency Fund">
+
+            <small class="text-danger">
+              {{ getFieldError('title') }}
+            </small>
+
+          </div>
+
+          <div class="row g-3">
+
+            <div class="col-md-6">
+
+              <label class="form-label">
+                Target Amount
+              </label>
+
+              <input
+                type="number"
+                class="form-control"
+                formControlName="targetAmount"
+                placeholder="Enter target amount">
+
+              <small class="text-danger">
+                {{ getFieldError('targetAmount') }}
+              </small>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <label class="form-label">
+                Current Amount
+              </label>
+
+              <input
+                type="number"
+                class="form-control"
+                formControlName="currentAmount"
+                placeholder="Default 0">
+
+              <small class="text-danger">
+                {{ getFieldError('currentAmount') }}
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="goal-actions">
+
+            <button
+              class="btn btn-primary"
+              type="submit">
+
+              Save Goal
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}

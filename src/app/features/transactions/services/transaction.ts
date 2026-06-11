@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 
 import { map, Observable, of, switchMap } from 'rxjs';
-import { forkJoin } from 'rxjs';
 
 import { ApiService } from '../../../core/services/api.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -38,20 +37,18 @@ export class TransactionService {
   loadCustomerTransactions(): Observable<Transaction[]> {
     return this.loadCustomerAccounts().pipe(
       switchMap(accounts => {
-        const accountIds = accounts
-          .map(account => Number(account.id))
-          .filter(accountId => !Number.isNaN(accountId));
+        const accountIds = accounts.map(account => String(account.id));
 
         if (accountIds.length === 0) {
           return of([] as Transaction[]);
         }
 
-        return forkJoin(
-          accountIds.map(accountId =>
-            this.api.get<Transaction[]>(`transactions?accountId=${accountId}`)
+        return this.api.get<Transaction[]>('transactions').pipe(
+          map(transactions =>
+            transactions.filter(transaction =>
+              accountIds.includes(String(transaction.accountId))
+            )
           )
-        ).pipe(
-          map(transactionGroups => transactionGroups.flat())
         );
       }),
       map(transactions => this.sortTransactions(transactions))
@@ -59,10 +56,13 @@ export class TransactionService {
   }
 
   loadCustomerAccounts(): Observable<Account[]> {
-    const userId = this.getUserId();
-
-    return this.api.get<Account[]>(
-      `accounts?userId=${userId}`
+    return this.api.get<Account[]>('accounts').pipe(
+      map(accounts =>
+        accounts.filter(
+          account =>
+            String(account.userId) === String(this.getUserId())
+        )
+      )
     );
   }
 
@@ -185,8 +185,8 @@ export class TransactionService {
     };
   }
 
-  private getUserId(): number {
-    return Number(this.authService.currentUser().userId || 2);
+  private getUserId(): string {
+    return String(this.authService.currentUser().userId ?? 2);
   }
 
   private sortTransactions(transactions: Transaction[]): Transaction[] {

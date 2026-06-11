@@ -8,11 +8,33 @@
 
     <div class="chart-container">
 
-      <canvas
-        baseChart
-        [data]="pieChartData"
-        [type]="pieChartType">
-      </canvas>
+      @if(hasData()) {
+
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [type]="pieChartType">
+        </canvas>
+
+      } @else {
+
+        <div class="empty-chart">
+
+          <div class="empty-chart-icon">
+            <i class="bi bi-pie-chart"></i>
+          </div>
+
+          <h6>
+            No spending data yet
+          </h6>
+
+          <p>
+            Your category breakdown will appear here once transactions are available.
+          </p>
+
+        </div>
+
+      }
 
     </div>
 
