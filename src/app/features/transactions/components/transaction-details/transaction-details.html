@@ -1,0 +1,101 @@
+@if (visible && transaction) {
+
+  <div
+    class="details-backdrop"
+    (click)="closePanel()">
+
+    <div
+      class="details-panel"
+      (click)="stopPropagation($event)">
+
+      <div class="panel-header">
+
+        <div>
+
+          <h5>
+            Transaction Details
+          </h5>
+
+          <p>
+            {{ transaction.referenceNumber }}
+          </p>
+
+        </div>
+
+        <button
+          class="btn-close"
+          type="button"
+          (click)="closePanel()">
+        </button>
+
+      </div>
+
+      <div class="panel-body">
+
+        <div class="hero-row">
+
+          <span
+            class="type-badge"
+            [class.credit-badge]="transaction.type === transactionType.CREDIT"
+            [class.debit-badge]="transaction.type === transactionType.DEBIT">
+
+            {{ transaction.type }}
+
+          </span>
+
+          <strong
+            class="hero-amount"
+            [class.credit-amount]="transaction.type === transactionType.CREDIT"
+            [class.debit-amount]="transaction.type === transactionType.DEBIT">
+
+            @if (transaction.type === transactionType.CREDIT) {
+              +{{ transaction.amount | currency:'INR':'symbol':'1.0-0' }}
+            } @else {
+              -{{ transaction.amount | currency:'INR':'symbol':'1.0-0' }}
+            }
+
+          </strong>
+
+        </div>
+
+        <div class="details-grid">
+
+          <div class="detail-item">
+            <span>Reference Number</span>
+            <strong>{{ transaction.referenceNumber }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Date</span>
+            <strong>{{ transaction.date | date:'dd MMMM yyyy' }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Category</span>
+            <strong>{{ transaction.category }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Description</span>
+            <strong>{{ transaction.description }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Account ID</span>
+            <strong>{{ transaction.accountId }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Beneficiary ID</span>
+            <strong>{{ transaction.beneficiaryId ?? 'N/A' }}</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}

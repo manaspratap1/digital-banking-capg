@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { provideEffects } from '@ngrx/effects';
+import { provideState } from '@ngrx/store';
 
 import { LoginPage } from './features/auth/pages/login-page/login-page';
 import { DashboardPage } from './features/dashboard/pages/dashboard-page/dashboard-page';
@@ -11,6 +13,9 @@ import { TransactionPage } from './features/transactions/pages/transaction-page/
 import { BillPage } from './features/bills/pages/bill-page/bill-page';
 import { FinancePage } from './features/finance-insights/pages/finance-page/finance-page';
 import { TransferPage } from './features/transfers/pages/transfer-page/transfer-page';
+import { TransactionsEffects } from './features/transactions/store/transactions.effects';
+import { transactionsReducer } from './features/transactions/store/transactions.reducer';
+import { transactionsFeatureKey } from './features/transactions/store/transactions.state';
 
 import { BeneficiaryPage } from './features/beneficiaries/pages/beneficiary-page/beneficiary-page';
 
@@ -41,7 +46,16 @@ export const routes: Routes = [
 
     {
       path: 'transactions',
-      component: TransactionPage
+      component: TransactionPage,
+      providers: [
+        provideState(
+          transactionsFeatureKey,
+          transactionsReducer
+        ),
+        provideEffects(
+          TransactionsEffects
+        )
+      ]
     },
 
     {
