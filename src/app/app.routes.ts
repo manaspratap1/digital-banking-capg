@@ -18,6 +18,8 @@ import { transactionsReducer } from './features/transactions/store/transactions.
 import { transactionsFeatureKey } from './features/transactions/store/transactions.state';
 
 import { BeneficiaryPage } from './features/beneficiaries/pages/beneficiary-page/beneficiary-page';
+import { NotificationPage } from './features/notifications/pages/notification-page/notification-page';
+import { customerGuard } from './core/guards/customer-guard-guard';
 
 export const routes: Routes = [
 
@@ -41,12 +43,14 @@ export const routes: Routes = [
 
     {
       path: 'dashboard',
-      component: DashboardPage
+      component: DashboardPage,
+      canActivate: [customerGuard]
     },
 
     {
       path: 'transactions',
       component: TransactionPage,
+      canActivate: [customerGuard],
       providers: [
         provideState(
           transactionsFeatureKey,
@@ -60,17 +64,20 @@ export const routes: Routes = [
 
     {
       path: 'transfers',
-      component: TransferPage
+      component: TransferPage,
+      canActivate: [customerGuard]
     },
 
     {
       path: 'bills',
-      component: BillPage
+      component: BillPage,
+      canActivate: [customerGuard]
     },
 
     {
       path: 'finance',
-      component: FinancePage
+      component: FinancePage,
+      canActivate: [customerGuard]
     },
 
     {
@@ -80,9 +87,14 @@ export const routes: Routes = [
     },
     {
       path: 'beneficiaries',
-      component: BeneficiaryPage
+      component: BeneficiaryPage,
+      canActivate: [customerGuard]
     },
-
+    {
+      path: 'notifications',
+      component: NotificationPage,
+      canActivate: [customerGuard]
+    }
   ]
 }
 
