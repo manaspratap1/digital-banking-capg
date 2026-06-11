@@ -20,6 +20,332 @@
       "id": "1",
       "userId": 2,
       "accountNumber": "1234567890",
+      "balance": 26000,
+      "accountType": "Savings"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "accountId": 1,
+      "amount": 50000,
+      "type": "credit",
+      "category": "Salary",
+      "date": "2026-06-01",
+      "description": "Monthly Salary",
+      "referenceNumber": "TXN001"
+    },
+    {
+      "id": "2",
+      "accountId": 1,
+      "amount": 5000,
+      "type": "debit",
+      "category": "Shopping",
+      "date": "2026-06-05",
+      "description": "Amazon",
+      "referenceNumber": "TXN002"
+    },
+    {
+      "id": "3",
+      "accountId": 1,
+      "amount": 2500,
+      "type": "debit",
+      "category": "Food",
+      "date": "2026-06-06",
+      "description": "Swiggy and restaurant expenses",
+      "referenceNumber": "TXN003"
+    },
+    {
+      "id": "4",
+      "accountId": 1,
+      "amount": 1200,
+      "type": "debit",
+      "category": "Transportation",
+      "date": "2026-06-07",
+      "description": "Uber rides",
+      "referenceNumber": "TXN004"
+    },
+    {
+      "id": "5",
+      "accountId": 1,
+      "amount": 8000,
+      "type": "debit",
+      "category": "Utilities",
+      "date": "2026-06-08",
+      "description": "Electricity and internet bills",
+      "referenceNumber": "TXN005"
+    },
+    {
+      "id": "6",
+      "accountId": 1,
+      "amount": 15000,
+      "type": "credit",
+      "category": "Freelance",
+      "date": "2026-06-10",
+      "description": "Freelance project payment",
+      "referenceNumber": "TXN006"
+    },
+    {
+      "id": "7",
+      "accountId": 1,
+      "amount": 3500,
+      "type": "debit",
+      "category": "Entertainment",
+      "date": "2026-06-11",
+      "description": "Movie tickets and gaming",
+      "referenceNumber": "TXN007"
+    },
+    {
+      "id": "8",
+      "accountId": 1,
+      "amount": 20000,
+      "type": "credit",
+      "category": "Bonus",
+      "date": "2026-06-15",
+      "description": "Performance bonus",
+      "referenceNumber": "TXN008"
+    },
+    {
+      "id": "9",
+      "accountId": 1,
+      "amount": 4500,
+      "type": "debit",
+      "category": "Healthcare",
+      "date": "2026-06-16",
+      "description": "Medical expenses",
+      "referenceNumber": "TXN009"
+    },
+    {
+      "id": "10",
+      "accountId": 1,
+      "amount": 10000,
+      "type": "debit",
+      "category": "Travel",
+      "date": "2026-06-18",
+      "description": "Weekend trip booking",
+      "referenceNumber": "TXN010"
+    },
+    {
+      "id": "11",
+      "accountId": 1,
+      "amount": 5000,
+      "type": "credit",
+      "category": "Refund",
+      "date": "2026-06-20",
+      "description": "Refund from cancelled order",
+      "referenceNumber": "TXN011"
+    },
+    {
+      "id": "12",
+      "accountId": 1,
+      "amount": 6000,
+      "type": "debit",
+      "category": "Education",
+      "date": "2026-06-22",
+      "description": "Online course subscription",
+      "referenceNumber": "TXN012"
+    },
+    {
+      "id": "308KS7uQHGE",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 10000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "testing",
+      "referenceNumber": "TRF1781074772871"
+    },
+    {
+      "id": "YCWzO7O7k70",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 5000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "providing service",
+      "referenceNumber": "TRF1781075043831"
+    },
+    {
+      "id": "6XG4QEe8zR8",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 2000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-11",
+      "description": "dalali",
+      "referenceNumber": "TRF1781075090812"
+    },
+    {
+      "id": "ztfbW47TXsQ",
+      "accountId": 1,
+      "amount": 3000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "bakchodi",
+      "referenceNumber": "TRF1781075247913"
+    },
+    {
+      "id": "R9pJCzsXiyE",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 1500,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "Expense",
+      "referenceNumber": "TRF1781081661478"
+    },
+    {
+      "id": "nFokg5vPuuo",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 500,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "Daily change",
+      "referenceNumber": "TRF1781083593476"
+    },
+    {
+      "id": "CwuEn25V4eM",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 1000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "naa",
+      "referenceNumber": "TRF1781087884334"
+    },
+    {
+      "id": "AF9EJuMwgr4",
+      "accountId": 1,
+      "beneficiaryId": null,
+      "amount": 1000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-10",
+      "description": "naaa",
+      "referenceNumber": "TRF1781087913594"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "id": "KCmCuI-Tq2g",
+      "userId": 2,
+      "name": "Saurabh Gupta",
+      "bankName": "Bank Of Baroda",
+      "accountNumber": "11223344556677"
+    }
+  ],
+  "bills": [
+    {
+      "id": "1",
+      "userId": 2,
+      "category": "Utility",
+      "billerName": "Electricity Board",
+      "amount": 2500,
+      "dueDate": "2026-06-15",
+      "status": "pending"
+    },
+    {
+      "id": "2",
+      "userId": 2,
+      "category": "Internet",
+      "billerName": "Airtel",
+      "amount": 1200,
+      "dueDate": "2026-06-18",
+      "status": "paid"
+    },
+    {
+      "billerName": "Municipal Water Supply",
+      "category": "Water Bill",
+      "amount": 1200,
+      "dueDate": "2026-06-18",
+      "id": "kSYvFmwDkls",
+      "userId": 2,
+      "status": "paid"
+    }
+  ],
+  "notifications": [],
+  "savingsGoals": [
+    {
+      "id": "1",
+      "userId": 2,
+      "title": "Laptop",
+      "targetAmount": 80000,
+      "currentAmount": 40000
+    },
+    {
+      "id": "2",
+      "userId": 2,
+      "title": "Emergency Fund",
+      "targetAmount": 200000,
+      "currentAmount": 75000
+    },
+    {
+      "id": "3",
+      "userId": 2,
+      "title": "Europe Trip",
+      "targetAmount": 300000,
+      "currentAmount": 50000
+    },
+    {
+      "id": "4",
+      "userId": 2,
+      "title": "New Smartphone",
+      "targetAmount": 70000,
+      "currentAmount": 25000
+    },
+    {
+      "id": "5",
+      "userId": 2,
+      "title": "Bike Down Payment",
+      "targetAmount": 150000,
+      "currentAmount": 60000
+    },
+    {
+      "id": "6",
+      "userId": 2,
+      "title": "Home Renovation",
+      "targetAmount": 500000,
+      "currentAmount": 120000
+    },
+    {
+      "id": "7",
+      "userId": 2,
+      "title": "Investment Corpus",
+      "targetAmount": 1000000,
+      "currentAmount": 180000
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Manas",
+      "email": "user@gmail.com",
+      "password": "user123",
+      "role": "customer"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1",
+      "userId": 2,
+      "accountNumber": "1234567890",
       "balance": 27000,
       "accountType": "Savings"
     }
