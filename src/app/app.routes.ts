@@ -18,7 +18,6 @@ import { transactionsReducer } from './features/transactions/store/transactions.
 import { transactionsFeatureKey } from './features/transactions/store/transactions.state';
 
 import { BeneficiaryPage } from './features/beneficiaries/pages/beneficiary-page/beneficiary-page';
-import { NotificationPage } from './features/notifications/pages/notification-page/notification-page';
 
 export const routes: Routes = [
 
@@ -83,10 +82,7 @@ export const routes: Routes = [
       path: 'beneficiaries',
       component: BeneficiaryPage
     },
-{
-  path: 'notifications',
-  component: NotificationPage
-}
+
   ]
 }
 

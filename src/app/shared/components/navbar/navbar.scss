@@ -305,33 +305,3 @@
   }
 
 }
-.notification-link{
-  position: relative;
-}
-
-.notification-badge{
-
-  position:absolute;
-
-  top:4px;
-  right:2px;
-
-  min-width:18px;
-  height:18px;
-
-  border-radius:50%;
-
-  background:#ef4444;
-
-  color:white;
-
-  font-size:.7rem;
-
-  font-weight:700;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:0 4px;
-}
