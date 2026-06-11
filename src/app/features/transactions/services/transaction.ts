@@ -22,7 +22,6 @@ export interface StatementMonthOption {
 
 export interface MonthlyStatement {
   monthLabel: string;
-  openingBalance: number;
   totalCredits: number;
   totalDebits: number;
   currentBalance: number;
@@ -179,7 +178,6 @@ export class TransactionService {
 
     return {
       monthLabel: this.formatMonthLabel(monthKey),
-      openingBalance,
       totalCredits,
       totalDebits,
       currentBalance: openingBalance + statementNetChange,

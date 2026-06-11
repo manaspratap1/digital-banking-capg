@@ -70,29 +70,22 @@
 
             <div class="col-md-6 col-xl-3">
               <div class="summary-box">
-                <span>Opening Balance</span>
-                <strong>{{ currentStatement.openingBalance | currency:'INR':'symbol':'1.0-0' }}</strong>
+                <span>Current Balance</span>
+                <strong>{{ currentStatement.currentBalance | currency:'INR':'symbol':'1.0-0' }}</strong>
               </div>
             </div>
 
-            <div class="col-md-6 col-xl-3">
+            <div class="col-md-6 col-xl-2">
               <div class="summary-box">
-                <span>Total Credits</span>
+                <span>Credit</span>
                 <strong class="credit-text">{{ currentStatement.totalCredits | currency:'INR':'symbol':'1.0-0' }}</strong>
               </div>
             </div>
 
             <div class="col-md-6 col-xl-2">
               <div class="summary-box">
-                <span>Total Debits</span>
+                <span>Debit</span>
                 <strong class="debit-text">{{ currentStatement.totalDebits | currency:'INR':'symbol':'1.0-0' }}</strong>
-              </div>
-            </div>
-
-            <div class="col-md-6 col-xl-2">
-              <div class="summary-box">
-                <span>Current Balance</span>
-                <strong>{{ currentStatement.currentBalance | currency:'INR':'symbol':'1.0-0' }}</strong>
               </div>
             </div>
 
