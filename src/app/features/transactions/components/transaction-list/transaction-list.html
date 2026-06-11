@@ -1,0 +1,136 @@
+<div class="list-card">
+
+  <div class="list-header">
+
+    <div>
+
+      <h5>
+        Transaction History
+      </h5>
+
+      <p>
+        Latest transactions appear first.
+      </p>
+
+    </div>
+
+    <span class="result-badge">
+      {{ transactions.length }} Results
+    </span>
+
+  </div>
+
+  @if (loading) {
+
+    <div class="state-card">
+      Loading transactions...
+    </div>
+
+  } @else if (error) {
+
+    <div class="alert alert-danger mb-0">
+      {{ error }}
+    </div>
+
+  } @else if (transactions.length === 0) {
+
+    <div class="state-card">
+      No transactions match the current filters.
+    </div>
+
+  } @else {
+
+    <div class="table-responsive">
+
+      <table class="table align-middle">
+
+        <thead>
+
+          <tr>
+
+            <th>Date</th>
+
+            <th>Description</th>
+
+            <th>Category</th>
+
+            <th>Reference</th>
+
+            <th>Type</th>
+
+            <th class="text-end">Amount</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          @for (transaction of transactions; track transaction.id) {
+
+            <tr
+              class="transaction-row"
+              (click)="selectTransaction(transaction)">
+
+              <td>
+                {{ transaction.date | date:'dd MMM yyyy' }}
+              </td>
+
+              <td>
+                <div class="description-cell">
+                  <strong>
+                    {{ transaction.description }}
+                  </strong>
+                  <small>
+                    {{ transaction.referenceNumber }}
+                  </small>
+                </div>
+              </td>
+
+              <td>
+                <span class="category-chip">
+                  {{ transaction.category }}
+                </span>
+              </td>
+
+              <td class="reference-text">
+                {{ transaction.referenceNumber }}
+              </td>
+
+              <td>
+                <span
+                  class="type-badge"
+                  [class.credit-badge]="transaction.type === transactionType.CREDIT"
+                  [class.debit-badge]="transaction.type === transactionType.DEBIT">
+
+                  {{ transaction.type }}
+
+                </span>
+              </td>
+
+              <td
+                class="amount-cell text-end"
+                [class.credit-amount]="transaction.type === transactionType.CREDIT"
+                [class.debit-amount]="transaction.type === transactionType.DEBIT">
+
+                @if (transaction.type === transactionType.CREDIT) {
+                  +{{ transaction.amount | currency:'INR':'symbol':'1.0-0' }}
+                } @else {
+                  -{{ transaction.amount | currency:'INR':'symbol':'1.0-0' }}
+                }
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  }
+
+</div>
