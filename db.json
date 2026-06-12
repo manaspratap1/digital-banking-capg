@@ -48,7 +48,7 @@
       "id": "frD7LCOTJi8",
       "userId": "BeCmnmoDaME",
       "accountNumber": "ACC1781196315173",
-      "balance": 45000,
+      "balance": 55000,
       "accountType": "Savings"
     },
     {
@@ -280,6 +280,27 @@
       "date": "2026-06-11T18:13:37.978Z",
       "description": "Salary Credit",
       "referenceNumber": "SAL1781201617978"
+    },
+    {
+      "id": "s1s1EXgr354",
+      "accountId": "frD7LCOTJi8",
+      "amount": 15000,
+      "type": "credit",
+      "category": "Salary",
+      "date": "2026-06-12T04:10:58.397Z",
+      "description": "Salary Credit",
+      "referenceNumber": "SAL1781237458397"
+    },
+    {
+      "id": "Z1GgMZUCINQ",
+      "accountId": "frD7LCOTJi8",
+      "beneficiaryId": "Ng6lpMT2wIQ",
+      "amount": 5000,
+      "type": "debit",
+      "category": "Transfer",
+      "date": "2026-06-12",
+      "description": "Rent",
+      "referenceNumber": "TRF1781237568837"
     }
   ],
   "beneficiaries": [
@@ -409,6 +430,13 @@
       "title": "Funds",
       "targetAmount": 20000,
       "currentAmount": 100
+    },
+    {
+      "id": "vebaYbBbuHE",
+      "userId": "BeCmnmoDaME",
+      "title": "Shaadi",
+      "targetAmount": 3000000,
+      "currentAmount": 1000000
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

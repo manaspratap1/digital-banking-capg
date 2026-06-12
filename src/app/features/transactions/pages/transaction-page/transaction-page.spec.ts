@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
 import { provideStore } from '@ngrx/store';
+import { of } from 'rxjs';
 
 import { TransactionPage } from './transaction-page';
 import { authReducer } from '../../../../core/store/auth/auth.reducer';
 import { transactionsReducer } from '../../store/transactions.reducer';
+import { TransactionService } from '../../services/transaction';
 
 describe('TransactionPage', () => {
   let component: TransactionPage;
@@ -16,12 +17,27 @@ describe('TransactionPage', () => {
     await TestBed.configureTestingModule({
       imports: [TransactionPage],
       providers: [
-        provideHttpClient(),
         provideRouter([]),
         provideStore({
           auth: authReducer,
           transactions: transactionsReducer,
         }),
+        {
+          provide: TransactionService,
+          useValue: {
+            getCategoryOptions: () => ['All'],
+            createHistorySummary: () => ({
+              credits: 0,
+              debits: 0,
+              netChange: 0,
+              totalTransactions: 0,
+            }),
+            loadCustomerAccounts: () => of([]),
+            createStatementAccountLabel: () => 'Account unavailable',
+            createStatementCurrentBalance: () => 0,
+            getStatementMonths: () => [],
+          },
+        },
       ],
     }).compileComponents();
 

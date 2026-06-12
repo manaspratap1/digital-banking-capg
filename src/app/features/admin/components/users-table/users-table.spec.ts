@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersTable } from './users-table';
@@ -9,6 +10,7 @@ describe('UsersTable', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UsersTable],
+      providers: [provideHttpClient()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UsersTable);

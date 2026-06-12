@@ -139,9 +139,9 @@
             {{
               authService
                 .currentUser()
-                .name!
-                .charAt(0)
-                .toUpperCase()
+                .name
+                ?.charAt(0)
+                ?.toUpperCase() ?? ''
             }}
 
           </div>

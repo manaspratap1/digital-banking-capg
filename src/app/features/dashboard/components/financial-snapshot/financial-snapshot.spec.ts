@@ -1,5 +1,9 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideStore } from '@ngrx/store';
 
+import { authReducer } from '../../../../core/store/auth/auth.reducer';
 import { FinancialSnapshot } from './financial-snapshot';
 
 describe('FinancialSnapshot', () => {
@@ -9,6 +13,13 @@ describe('FinancialSnapshot', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FinancialSnapshot],
+      providers: [
+        provideHttpClient(),
+        provideRouter([]),
+        provideStore({
+          auth: authReducer,
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FinancialSnapshot);
